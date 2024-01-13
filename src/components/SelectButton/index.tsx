@@ -53,7 +53,7 @@ export default function SelectButton({ index, userId }: Props) {
     >
       <span className={titleClass}>{NINE_ITEMS[index]}</span>
       {answer?.artistMember?.profileImage && answer?.artistMember?.name ? (
-        <Image
+        <img
           className={imageClass}
           src={`${answer?.artistMember?.profileImage}`}
           alt=""
