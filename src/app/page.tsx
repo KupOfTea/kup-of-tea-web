@@ -1,6 +1,8 @@
 'use client'
-import NavigationModal from '@/components/NavigationModal'
+
 import { useOverlay } from '@toss/use-overlay'
+
+import NavigationModal from '@/components/NavigationModal'
 
 export default function Home() {
   const overlay = useOverlay()

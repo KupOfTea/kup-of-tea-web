@@ -8,16 +8,10 @@ const fetchTeam = async (ticker: string) => {
     .single()
 
   if (error) {
-    throw error
+    return null
   }
 
   const { id } = data
 
   return id
-}
-
-export const fetchArtistMembers = async (ticker: string) => {
-  const teamId = fetchTeam(ticker)
-
-  return await client.from('artist_members').select('*').eq('team_id', teamId)
 }

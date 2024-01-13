@@ -8,7 +8,7 @@ export default function GenerateButton() {
   const type = usePathname().split('/')[2]
 
   return (
-    <div
+    <button
       onClick={() => {
         router.push(`/${ticker}/${type}/download`)
       }}
@@ -16,6 +16,6 @@ export default function GenerateButton() {
       style={{ maxWidth: '30rem' }}
     >
       만들기
-    </div>
+    </button>
   )
 }

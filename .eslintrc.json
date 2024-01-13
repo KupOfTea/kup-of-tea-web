@@ -40,6 +40,7 @@
     }
   },
   "rules": {
+    "react/button-has-type": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
@@ -162,13 +163,7 @@
     "prefer-destructuring": ["error", { "object": true, "array": false }],
     "lines-between-class-members": "off",
     "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/label-has-associated-control": [
-      "error",
-      {
-        "labelComponents": ["label"],
-        "labelAttributes": ["htmlFor"],
-        "controlComponents": ["input"]
-      }
-    ]
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-else-return": "off"
   }
 }

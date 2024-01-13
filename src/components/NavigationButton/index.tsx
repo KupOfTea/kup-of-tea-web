@@ -1,11 +1,13 @@
 'use client'
+
+import cx from 'classnames'
+import { useRouter, useParams } from 'next/navigation'
+import { useRecoilCallback } from 'recoil'
+
 import { NINE_ITEMS } from '@/constants/question'
 import { USER_LENGTH } from '@/constants/user'
 import { answerState } from '@/states/answer'
 import { userState } from '@/states/user'
-import cx from 'classnames'
-import { useRouter, useParams } from 'next/navigation'
-import { useRecoilCallback } from 'recoil'
 
 interface Props {
   path: string
@@ -34,7 +36,7 @@ export default function NavigationButton({ path, title, border }: Props) {
         } else {
           Array.from({ length: USER_LENGTH }).forEach((_, userIndex) => {
             reset(userState(`u${userIndex}`))
-            NINE_ITEMS.forEach((_, index) => {
+            NINE_ITEMS.forEach((item, index) => {
               reset(answerState(`multi-u${userIndex}-${index}`))
             })
           })

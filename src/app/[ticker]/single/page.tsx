@@ -1,8 +1,11 @@
 'use client'
+
+import { useParams } from 'next/navigation'
+
+import { downloadImage } from '@/utils/downloadImage'
+
 import BackButtonAppBar from '@/components/BackButtonAppBar'
 import SingleCard from '@/components/SingleCard'
-import { downloadImage } from '@/utils/downloadImage'
-import { useParams } from 'next/navigation'
 
 export default function SinglePage() {
   const { ticker } = useParams()

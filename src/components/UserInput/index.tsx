@@ -1,5 +1,6 @@
-import { userState } from '@/states/user'
 import { useRecoilState } from 'recoil'
+
+import { userState } from '@/states/user'
 
 interface Props {
   index: number

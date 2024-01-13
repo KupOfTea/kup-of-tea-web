@@ -1,8 +1,10 @@
 'use client'
+
+import { atom, atomFamily, selector } from 'recoil'
+
 import { QUESTION_LENGTH } from '@/constants/question'
 import { USER_LENGTH } from '@/constants/user'
 import { Answer } from '@/types/answer'
-import { atom, atomFamily, selector } from 'recoil'
 
 export const answerState = atomFamily<Answer, string>({
   key: 'answerState',

@@ -1,10 +1,14 @@
 'use client'
+
+import uuid from 'uuid'
+
+import { NINE_ITEMS } from '@/constants/question'
+import { USER_LENGTH } from '@/constants/user'
+
 import BackButtonAppBar from '@/components/BackButtonAppBar'
 import GenerateButton from '@/components/GenerateButton'
 import SelectButton from '@/components/SelectButton'
 import UserInput from '@/components/UserInput'
-import { NINE_ITEMS } from '@/constants/question'
-import { USER_LENGTH } from '@/constants/user'
 
 export default function MultiplePage() {
   return (
@@ -35,9 +39,7 @@ export default function MultiplePage() {
                     <SelectButton
                       index={itemIndex}
                       userId={`u${userIndex}`}
-                      key={`select-button-multiple-u${userIndex}-${
-                        itemIndex + 1
-                      }`}
+                      key={uuid.v4()}
                     />
                   ))}
                 </div>

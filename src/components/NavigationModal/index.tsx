@@ -1,9 +1,12 @@
 'use client'
+
+import uuid from 'uuid'
 import Image from 'next/image'
 import { useQuery } from '@supabase-cache-helpers/postgrest-swr'
+import { useRouter } from 'next/navigation'
+
 import client from '@/client/base'
 import { Team } from '@/types/team'
-import { useRouter } from 'next/navigation'
 
 interface Props {
   isOpen: boolean
@@ -27,10 +30,10 @@ export default function NavigationModal({ isOpen, close }: Props) {
   return (
     isOpen && (
       <div className="fixed inset-0 z-10 overflow-y-auto">
-        <div
+        <button
           className="fixed inset-0 w-full h-full bg-black opacity-40"
           onClick={() => close()}
-        ></div>
+        />
         <div className="flex items-center min-h-screen px-4 py-8">
           <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
             <div className="mt-3 sm:flex">
@@ -52,7 +55,7 @@ export default function NavigationModal({ isOpen, close }: Props) {
                   {teams.map((team, idx) => {
                     return (
                       <button
-                        key={`${team.name}-${idx}-btn`}
+                        key={uuid.v4()}
                         onClick={() => handleClick(team)}
                         className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
                       >

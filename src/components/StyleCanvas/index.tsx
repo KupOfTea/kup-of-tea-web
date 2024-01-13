@@ -1,13 +1,14 @@
 'use client'
 
-import { NINE_ITEMS } from '@/constants/question'
-import { allAnswersSelector } from '@/states/answer'
-import { allUsersSelector } from '@/states/user'
-import { Answer } from '@/types/answer'
 import saveAs from 'file-saver'
 import { useParams } from 'next/navigation'
 import { RefObject, useEffect, useRef } from 'react'
 import { useRecoilValue } from 'recoil'
+
+import { NINE_ITEMS } from '@/constants/question'
+import { allAnswersSelector } from '@/states/answer'
+import { allUsersSelector } from '@/states/user'
+import { Answer } from '@/types/answer'
 
 export default function StyleCanvas() {
   const { ticker } = useParams()
@@ -101,13 +102,16 @@ export default function StyleCanvas() {
 
           const memberImage = new Image()
           memberImage.crossOrigin = 'anonymous'
-          memberImage.src =
-            answer.artistMember.profileImage + '?v=' + new Date().getTime()
+          memberImage.src = `${
+            answer.artistMember.profileImage
+          }?v=${new Date().getTime()}`
 
           memberImage.onload = () => {
             ctx.drawImage(memberImage, imageX, imageY, imageWidth, imageHeight)
           }
+          return true
         })
+        return true
       })
     }
 
@@ -149,13 +153,13 @@ export default function StyleCanvas() {
         width={1400}
         height={1000}
         className="w-full bg-white"
-      ></canvas>
-      <div
+      />
+      <button
         onClick={saveAsImage}
         className={`fixed rounded-[28px] left-1/2 -translate-x-1/2 text-center items-center justify-center py-[16px] bg-gray-900 text-white font-bold text-[13px] w-[85%] bottom-[35px] ${'block'}`}
       >
         저장하기
-      </div>
+      </button>
     </div>
   )
 }

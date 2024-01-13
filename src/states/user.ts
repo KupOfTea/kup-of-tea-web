@@ -1,7 +1,9 @@
 'use client'
+
+import { atom, atomFamily, selector } from 'recoil'
+
 import { USER_LENGTH } from '@/constants/user'
 import { User } from '@/types/user'
-import { atom, atomFamily, selector } from 'recoil'
 
 export const userState = atomFamily<User, string>({
   key: 'userState',

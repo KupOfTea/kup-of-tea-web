@@ -1,11 +1,14 @@
 'use client'
+
 import { useQuery } from '@supabase-cache-helpers/postgrest-swr'
-import client from '@/client/base'
 import classNames from 'classnames'
 import Image from 'next/image'
-import NavigationButton from '@/components/NavigationButton'
+
+import client from '@/client/base'
 import { Team } from '@/types/team'
 import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
+
+import NavigationButton from '@/components/NavigationButton'
 import HomeButtonAppBar from '@/components/HomeButtonAppBar'
 
 interface Props {
@@ -44,20 +47,16 @@ export default function TeamLandingPage({ params: { ticker } }: Props) {
             alt=""
             width={1000}
             height={1000}
-            unoptimized={true}
+            unoptimized
           />
         ) : (
           <div className="object-cover w-[50%] aspect-square mb-10" />
         )}
         <div className="mb-10 flex flex-col w-full space-y-5 items-center justify-center">
+          <NavigationButton path="single" title="1인용 취향표" border />
           <NavigationButton
-            path={`single`}
-            title={'1인용 취향표'}
-            border={true}
-          />
-          <NavigationButton
-            path={'multiple'}
-            title={'6인용 취향표'}
+            path="multiple"
+            title="6인용 취향표"
             border={false}
           />
         </div>

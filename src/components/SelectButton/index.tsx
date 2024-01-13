@@ -1,14 +1,17 @@
 'use client'
+
 import Image from 'next/image'
-import { modalState } from '@/states/modal'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useOverlay } from '@toss/use-overlay'
-import SelectModal from '../SelectModal'
+import classNames from 'classnames'
+import { usePathname } from 'next/navigation'
+
+import { modalState } from '@/states/modal'
 import { NINE_ITEMS } from '@/constants/question'
 import { answerState } from '@/states/answer'
 import { generateAnswerKey } from '@/utils/generateAnswerKey'
-import classNames from 'classnames'
-import { usePathname } from 'next/navigation'
+
+import SelectModal from '../SelectModal'
 
 interface Props {
   index: number
@@ -19,10 +22,10 @@ export default function SelectButton({ index, userId }: Props) {
   const overlay = useOverlay()
   const setModal = useSetRecoilState(modalState)
 
-  const answerKey = generateAnswerKey(index, userId)
-  const answer = useRecoilValue(answerState(answerKey))
-
   const type = usePathname().split('/')[2]
+
+  const answerKey = generateAnswerKey(index, type, userId)
+  const answer = useRecoilValue(answerState(answerKey))
 
   const openModal = () => {
     setModal({

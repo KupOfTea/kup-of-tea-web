@@ -1,15 +1,18 @@
 'use client'
+
 import { useQuery } from '@supabase-cache-helpers/postgrest-swr'
+import { useParams, usePathname } from 'next/navigation'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import Image from 'next/image'
+import uuid from 'uuid'
+
 import client from '@/client/base'
 import { ArtistMember } from '@/types/artistMember'
-import { useParams, usePathname } from 'next/navigation'
 import { modalState } from '@/states/modal'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
 import { NINE_ITEMS } from '@/constants/question'
 import { answerState } from '@/states/answer'
 import { generateAnswerKey } from '@/utils/generateAnswerKey'
-import Image from 'next/image'
 
 interface Props {
   isOpen: boolean
@@ -19,7 +22,10 @@ interface Props {
 
 export default function SelectModal({ isOpen, close, userId }: Props) {
   const modal = useRecoilValue(modalState)
-  const answerKey = generateAnswerKey(modal.activeButtonIdx, userId)
+
+  const type = usePathname().split('/')[2]
+
+  const answerKey = generateAnswerKey(modal.activeButtonIdx, type, userId)
   const setAnswer = useSetRecoilState(answerState(answerKey))
   const { ticker } = useParams()
 
@@ -50,10 +56,10 @@ export default function SelectModal({ isOpen, close, userId }: Props) {
   return (
     isOpen && (
       <div className="fixed inset-0 z-10 overflow-y-auto">
-        <div
+        <button
           className="fixed inset-0 w-full h-full bg-black opacity-40"
           onClick={() => close()}
-        ></div>
+        />
         <div className="flex items-center min-h-screen px-4 py-8">
           <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
             <div className="mt-3 sm:flex">
@@ -65,7 +71,7 @@ export default function SelectModal({ isOpen, close, userId }: Props) {
                   {artistMembers.map((member, idx) => {
                     return (
                       <button
-                        key={`${member.name}-${idx}-btn`}
+                        key={uuid.v4()}
                         onClick={() => handleSelection(member)}
                         className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
                       >

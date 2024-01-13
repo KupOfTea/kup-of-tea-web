@@ -1,4 +1,5 @@
 import { NINE_ITEMS } from '@/constants/question'
+
 import SelectButton from '../SelectButton'
 
 export default function SingleCard() {
