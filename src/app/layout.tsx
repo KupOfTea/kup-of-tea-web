@@ -1,6 +1,14 @@
+import dynamic from 'next/dynamic'
+
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import DefaultLayout from '@/layouts/DefaultLayout'
+
+import { PHProvider } from './providers'
+
+const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
+  ssr: false,
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://k-tea.club/'),
@@ -53,11 +61,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="font-suite flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="max-w-lg w-full">
-          <DefaultLayout>{children}</DefaultLayout>
-        </div>
-      </body>
+      <PHProvider>
+        <body className="font-suite flex items-center justify-center min-h-screen bg-gray-100">
+          <PostHogPageView />
+          <div className="max-w-lg w-full">
+            <DefaultLayout>{children}</DefaultLayout>
+          </div>
+        </body>
+      </PHProvider>
     </html>
   )
 }
