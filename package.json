@@ -26,6 +26,7 @@
     "file-saver": "^2.0.5",
     "html-to-image": "^1.11.11",
     "next": "14.0.4",
+    "posthog-js": "^1.98.2",
     "react": "^18",
     "react-dom": "^18",
     "react-toastify": "^9.1.3",
