@@ -4,7 +4,7 @@ import { useQuery } from '@supabase-cache-helpers/postgrest-swr'
 import { useParams, usePathname } from 'next/navigation'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import Image from 'next/image'
-import uuid from 'uuid'
+import uuid from 'react-uuid'
 
 import client from '@/client/base'
 import { ArtistMember } from '@/types/artistMember'
@@ -71,7 +71,7 @@ export default function SelectModal({ isOpen, close, userId }: Props) {
                   {artistMembers.map((member, idx) => {
                     return (
                       <button
-                        key={uuid.v4()}
+                        key={uuid()}
                         onClick={() => handleSelection(member)}
                         className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
                       >

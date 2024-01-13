@@ -1,6 +1,6 @@
 'use client'
 
-import uuid from 'uuid'
+import uuid from 'react-uuid'
 import Image from 'next/image'
 import { useQuery } from '@supabase-cache-helpers/postgrest-swr'
 import { useRouter } from 'next/navigation'
@@ -55,7 +55,7 @@ export default function NavigationModal({ isOpen, close }: Props) {
                   {teams.map((team, idx) => {
                     return (
                       <button
-                        key={uuid.v4()}
+                        key={uuid()}
                         onClick={() => handleClick(team)}
                         className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
                       >

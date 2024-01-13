@@ -1,6 +1,6 @@
 'use client'
 
-import uuid from 'uuid'
+import uuid from 'react-uuid'
 
 import { NINE_ITEMS } from '@/constants/question'
 import { USER_LENGTH } from '@/constants/user'
@@ -39,7 +39,7 @@ export default function MultiplePage() {
                     <SelectButton
                       index={itemIndex}
                       userId={`u${userIndex}`}
-                      key={uuid.v4()}
+                      key={uuid()}
                     />
                   ))}
                 </div>
