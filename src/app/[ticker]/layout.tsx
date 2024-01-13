@@ -19,13 +19,13 @@ export const generateMetadata = async (parameter: any) => {
   const { name, logo } = data!
 
   return {
-    metadataBase: new URL(`https://k-tea.club/${ticker}`),
+    metadataBase: new URL(`https://k-tea.love/${ticker}`),
     title: `${name} 취향표 생성기`,
     description: `${name} 취향표를 만들어 보세요.`,
     openGraph: {
       type: 'website',
       locale: 'ko_KR',
-      url: `https://k-tea.club/${ticker}`,
+      url: `https://k-tea.love/${ticker}`,
       title: `${name} 취향표 생성기`,
       description: `${name} 취향표를 만들어 보세요.`,
       images: [
@@ -42,7 +42,7 @@ export const generateMetadata = async (parameter: any) => {
       card: 'summary_large_image',
       title: `${name} 취향표 생성기`,
       description: `${name} 취향표 생성기`,
-      site: `https://k-tea.club/${ticker}`,
+      site: `https://k-tea.love/${ticker}`,
       images: [
         {
           url: logo,
