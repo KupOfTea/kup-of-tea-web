@@ -1,14 +1,16 @@
 import saveAs from 'file-saver'
-import * as htmlToImage from 'html-to-image'
+import html2canvas from 'html2canvas'
 
 export const downloadImage = (id: string, ticker: string) => {
   const element = document.getElementById(id)
 
-  htmlToImage
-    .toBlob(element as HTMLElement, {
-      includeQueryParams: true,
-    })
-    .then((blob) => {
+  html2canvas(element as HTMLElement, {
+    useCORS: true,
+    allowTaint: true,
+    foreignObjectRendering: false,
+  }).then((canvas) => {
+    canvas.toBlob((blob) => {
       saveAs(blob as Blob, `${ticker}.png`)
     })
+  })
 }

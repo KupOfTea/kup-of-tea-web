@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useOverlay } from '@toss/use-overlay'
 import classNames from 'classnames'
