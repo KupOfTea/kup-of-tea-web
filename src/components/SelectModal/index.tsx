@@ -13,7 +13,6 @@ import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
 import { NINE_ITEMS } from '@/constants/question'
 import { answerState } from '@/states/answer'
 import { generateAnswerKey } from '@/utils/generateAnswerKey'
-import { useEffect } from 'react'
 
 interface Props {
   isOpen: boolean
