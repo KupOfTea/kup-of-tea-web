@@ -13,6 +13,7 @@ import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
 import { NINE_ITEMS } from '@/constants/question'
 import { answerState } from '@/states/answer'
 import { generateAnswerKey } from '@/utils/generateAnswerKey'
+import { useEffect } from 'react'
 
 interface Props {
   isOpen: boolean
@@ -33,12 +34,14 @@ export default function SelectModal({ isOpen, close, userId }: Props) {
     client
       .from('teams')
       .select(`artist_members(id, name, profile_image)`)
-      .eq('ticker', ticker),
+      .eq('ticker', ticker)
+      .order('id', { referencedTable: 'artist_members', ascending: true }),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
     },
   )
+
 
   const artistMembersRaw = data?.[0]?.artist_members || []
   const artistMembers: ArtistMember[] = convertObjectKeysToCamelCase(
