@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# K-POP 아이돌 취향표 생성기
+#### [사이트 링크](https://www.k-tea.love/)
+---
+- [세븐틴 취향표 - Flutter Web](https://svt-style.web.app)
+- [세븐틴 취향표](https://svt-style.vercel.app)
+- [엔시티 취향표](https://nct-style.vercel.app)
+- [더보이즈 취향표](https://tbz-style.vercel.app)
+- [스트레이 키즈 취향표](https://skz-style.vercel.app)
 
-## Getting Started
+##### 여러 개로 나누어져 있던 사이트들과 프로젝트를 하나로 관리하기 위해 만들었습니다.
+##### Next.js, TypeScript, Tailwind CSS, Supabase를 사용했습니다.
 
-First, run the development server:
+- [Flutter Web에서 Next.js로 변경한 일기](https://developer-tyga.postype.com/post/13619026)
+- [Next.js 변경 이후 새로운 기능 추가한 일기](https://developer-tyga.postype.com/post/15661829)
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+|메인 화면|팀 선택 모달|팀 메인 화면|
+|---|---|---|
+|<img width="380" alt="" src="https://github.com/KupOfTea/kup-of-tea-web/assets/63589031/f7e9ec4c-8886-4c79-9775-e413623c80e5">|<img width="381" alt="" src="https://github.com/KupOfTea/kup-of-tea-web/assets/63589031/320a0fcd-9524-403e-8a56-3b2b53a63f76">|<img width="381" alt="" src="https://github.com/KupOfTea/kup-of-tea-web/assets/63589031/2f399402-4a55-4f07-b3e4-04a6cf29352d">|
