@@ -42,7 +42,7 @@ export default function TeamLandingPage({ params: { ticker } }: Props) {
         </div>
         {team?.logo ? (
           <Image
-            className="object-contain w-[50%] mb-10"
+            className="object-contain w-[50%] aspect-square mb-10"
             src={team.logo}
             alt=""
             width={1000}
