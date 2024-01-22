@@ -15,7 +15,7 @@ interface Props {
 
 export default function NavigationModal({ isOpen, close }: Props) {
   const router = useRouter()
-  const { data } = useQuery(client.from('teams').select('name, ticker, logo'), {
+  const { data } = useQuery(client.from('teams').select('name, ticker, logo').order('id', { ascending: true }), {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   })
