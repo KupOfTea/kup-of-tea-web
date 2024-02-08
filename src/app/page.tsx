@@ -34,13 +34,15 @@ export default function Home() {
       >
         팀 선택하기
       </button>
-      <div className='space-y-3 flex flex-col mt-10 font-medium text-white text-xs'>
-        <div className='bg-sky-600 px-3 py-2 rounded-md text-center'>
-          이 사이트를 만든 개발자가 구직 중입니다...<br/>
+      <div className="space-y-3 flex flex-col mt-10 font-medium text-white text-xs">
+        <div className="bg-sky-600 px-3 py-2 rounded-md text-center">
+          이 사이트를 만든 개발자가 구직 중입니다...
+          <br />
           개발자 구하시는 회사가 있다면 연락 주세요... ㅠㅠ
         </div>
-        <div className='bg-sky-500 px-3 py-2 rounded-md text-center'>
-          이 사이트를 사이드 프로젝트로 같이 진행하실<br/>
+        <div className="bg-sky-500 px-3 py-2 rounded-md text-center">
+          이 사이트를 사이드 프로젝트로 같이 진행하실
+          <br />
           디자이너님도 구합니다... 연락 주세요...!!!!
         </div>
       </div>
