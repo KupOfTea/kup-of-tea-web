@@ -34,11 +34,14 @@ export default function TeamLandingPage({ params: { ticker } }: Props) {
       <div className="flex flex-col items-center justify-start w-full px-5 py-10 min-h-screen bg-white">
         <div
           className={classNames(
-            'mb-20 text-3xl font-black text-black',
+            'mb-20 text-3xl font-black text-black flex flex-col text-center',
             '.service-title',
           )}
         >
-          {`${team?.name || ''} 취향표`}
+          <div>
+            {team?.name || ''}
+          </div>
+          <div>취향표</div>
         </div>
         {team?.logo ? (
           <Image
