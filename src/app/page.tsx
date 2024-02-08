@@ -40,7 +40,7 @@ export default function Home() {
         onClick={() => router.push('/custom')}
         className="mt-2 mx-2 text-center text-lg font-extrabold py-3 w-full bg-white text-black border-2 border-black shadow-sm rounded-full"
       >
-        여러 팀 선택하기
+        팀 제한 X 취향표
       </button>
       <div className="space-y-3 flex flex-col mt-10 font-medium text-white text-xs">
         <div className="bg-sky-600 px-3 py-2 rounded-md text-center">

@@ -16,7 +16,7 @@ export default function CustomLandingPage() {
             '.service-title',
           )}
         >
-          <div>여러 팀 선택</div>
+          <div>팀 제한 X</div>
           <div>취향표</div>
         </div>
         <div>한 팀의 멤버 말고 여러 팀 멤버를 볼 수 있어요</div>
