@@ -119,7 +119,7 @@ export default function StyleCanvas() {
     ctx.textAlign = 'right'
     ctx.font = '400 22px sans-serif'
     ctx.fillText(
-      `@DevvTyga 개발자 타이가 - ${ticker} 취향표`,
+      `@DevvTyga 개발자 타이가 - ${ticker || 'K-POP'} 취향표`,
       canvas.width - 10,
       canvas.height - 10,
     )

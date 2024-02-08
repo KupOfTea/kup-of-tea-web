@@ -6,3 +6,7 @@ interface BaseTeam {
 export interface Team extends BaseTeam {
   ticker: string
 }
+
+export interface TeamWithId extends Team {
+  id: number
+}

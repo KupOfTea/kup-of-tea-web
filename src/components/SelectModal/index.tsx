@@ -41,7 +41,6 @@ export default function SelectModal({ isOpen, close, userId }: Props) {
     },
   )
 
-
   const artistMembersRaw = data?.[0]?.artist_members || []
   const artistMembers: ArtistMember[] = convertObjectKeysToCamelCase(
     artistMembersRaw,

@@ -1,11 +1,13 @@
 'use client'
 
 import { useOverlay } from '@toss/use-overlay'
+import { useRouter } from 'next/navigation'
 
 import NavigationModal from '@/components/NavigationModal'
 
 export default function Home() {
   const overlay = useOverlay()
+  const router = useRouter()
 
   const openModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -33,6 +35,12 @@ export default function Home() {
         className="mt-40 mx-2 text-center text-lg font-extrabold py-3 w-full bg-black text-white shadow-sm rounded-full"
       >
         팀 선택하기
+      </button>
+      <button
+        onClick={() => router.push('/custom')}
+        className="mt-2 mx-2 text-center text-lg font-extrabold py-3 w-full bg-white text-black border-2 border-black shadow-sm rounded-full"
+      >
+        여러 팀 선택하기
       </button>
       <div className="space-y-3 flex flex-col mt-10 font-medium text-white text-xs">
         <div className="bg-sky-600 px-3 py-2 rounded-md text-center">

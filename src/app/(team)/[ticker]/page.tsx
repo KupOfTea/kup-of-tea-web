@@ -38,9 +38,7 @@ export default function TeamLandingPage({ params: { ticker } }: Props) {
             '.service-title',
           )}
         >
-          <div>
-            {team?.name || ''}
-          </div>
+          <div>{team?.name || ''}</div>
           <div>취향표</div>
         </div>
         {team?.logo ? (
