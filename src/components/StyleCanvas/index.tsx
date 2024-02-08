@@ -102,9 +102,7 @@ export default function StyleCanvas() {
 
           const memberImage = new Image()
           memberImage.crossOrigin = 'anonymous'
-          memberImage.src = `${
-            answer.artistMember.profileImage
-          }?v=${new Date().getTime()}`
+          memberImage.src = `${answer.artistMember.profileImage}`
 
           memberImage.onload = () => {
             ctx.drawImage(memberImage, imageX, imageY, imageWidth, imageHeight)
