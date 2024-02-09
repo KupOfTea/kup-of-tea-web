@@ -20,7 +20,7 @@ export default function NavigationGrid({ gender, close }: GridProps) {
       .from('teams')
       .select('name, ticker, logo')
       .eq('gender', gender)
-      .order('id', { ascending: true }),
+      .order('name', { ascending: true }),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,

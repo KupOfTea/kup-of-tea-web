@@ -34,7 +34,7 @@ export default function CustomSelectModal({ isOpen, close, userId }: Props) {
     client
       .from('teams')
       .select(`id, name, ticker, logo`)
-      .order('id', { ascending: true }),
+      .order('name', { ascending: true }),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
