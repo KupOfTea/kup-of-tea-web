@@ -42,9 +42,18 @@ export default function SelectModal({ isOpen, close, userId }: Props) {
   )
 
   const artistMembersRaw = data?.[0]?.artist_members || []
-  const artistMembers: ArtistMember[] = convertObjectKeysToCamelCase(
-    artistMembersRaw,
-  ) as unknown as ArtistMember[]
+  const emptyArtistMember: ArtistMember = {
+    id: 0,
+    name: '선택 X',
+    profileImage: 'https://k-tea.love/empty.jpg',
+  } as ArtistMember
+
+  const artistMembers: ArtistMember[] = [
+    emptyArtistMember,
+    ...(convertObjectKeysToCamelCase(
+      artistMembersRaw,
+    ) as unknown as ArtistMember[]),
+  ]
 
   const handleSelection = (member: ArtistMember) => {
     setAnswer({

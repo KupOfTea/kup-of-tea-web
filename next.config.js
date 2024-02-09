@@ -2,7 +2,7 @@
 const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['egbnfonqeqseuptbfkyp.supabase.co'],
+    domains: ['egbnfonqeqseuptbfkyp.supabase.co', 'k-tea.love'],
   },
 }
 

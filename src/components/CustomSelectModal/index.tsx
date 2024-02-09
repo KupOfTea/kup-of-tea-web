@@ -62,7 +62,13 @@ export default function CustomSelectModal({ isOpen, close, userId }: Props) {
       artistMembersRaw,
     ) as unknown as ArtistMember[]
 
-    setCurrentArtistMembers(artistMembers || [])
+    const emptyArtistMember: ArtistMember = {
+      id: 0,
+      name: '선택 X',
+      profileImage: 'https://k-tea.love/empty.jpg',
+    } as ArtistMember
+
+    setCurrentArtistMembers([emptyArtistMember, ...artistMembers] || [])
   }
 
   const handleSelection = (member: ArtistMember) => {
