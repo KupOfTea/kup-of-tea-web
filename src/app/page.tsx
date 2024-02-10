@@ -8,7 +8,7 @@ export default function Home() {
   const router = useRouter()
 
   return (
-    <div className="flex flex-col items-center justify-around w-full px-5 py-5 min-h-screen bg-white">
+    <div className="flex flex-col items-center justify-evenly w-full px-5 pt-5 pb-16 min-h-screen bg-white">
       <AdCarousel />
       <div className="flex flex-col w-full space-y-5 items-center py-12">
         <div className="flex flex-col items-center">
@@ -42,7 +42,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="w-full space-y-3 flex flex-col mt-5 font-medium text-white text-xs">
+      <div className="w-full space-y-3 flex flex-col font-medium text-white text-xs">
         <div className="bg-sky-600 px-3 py-2 rounded-md text-center">
           이 사이트를 만든 개발자가 구직 중입니다...
           <br />
