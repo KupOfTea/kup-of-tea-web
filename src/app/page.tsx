@@ -8,9 +8,9 @@ export default function Home() {
   const router = useRouter()
 
   return (
-    <div className="flex flex-col items-center justify-evenly w-full px-5 pt-5 pb-16 min-h-screen bg-white">
+    <div className="flex flex-col items-center justify-evenly w-full px-5 pt-3 pb-20 min-h-screen bg-white">
       <AdCarousel />
-      <div className="flex flex-col w-full space-y-5 items-center py-12">
+      <div className="flex flex-col w-full space-y-5 items-center pt-12 pb-4">
         <div className="flex flex-col items-center">
           <div className="font-semibold text-2xl text-base-600">
             <span>My </span>
