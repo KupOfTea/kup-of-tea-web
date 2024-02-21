@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import Script from 'next/script'
 
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
@@ -61,6 +62,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-MJMY1VFJB8"
+        />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MJMY1VFJB8');
+          `}
+        </Script>
+      </head>
       <PHProvider>
         <body className="font-suite flex items-center justify-center min-h-screen bg-gray-100">
           <PostHogPageView />
