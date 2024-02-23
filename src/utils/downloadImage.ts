@@ -5,7 +5,7 @@ export const downloadImage = (id: string, ticker: string) => {
   const element = document.getElementById(id)
 
   html2canvas(element as HTMLElement, {
-    useCORS: true,
+    useCORS: false,
     allowTaint: true,
   }).then((canvas) => {
     canvas.toBlob((blob) => {
