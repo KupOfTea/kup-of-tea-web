@@ -21,8 +21,7 @@ export default async function Image({ params: { ticker } }: Props) {
   try {
     const group = await getGroup(ticker)
 
-    // const url = 'https://k-tea.love/fonts/SUITE-Heavy.otf'
-    const url = 'http://localhost:3000/fonts/SUITE-Heavy.otf'
+    const url = 'https://k-tea.love/fonts/SUITE-Heavy.otf'
 
     const font = await fetch(new URL(url)).then((res) => res.arrayBuffer())
 
