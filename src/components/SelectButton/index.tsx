@@ -61,7 +61,6 @@ export default function SelectButton({ index, userId }: Props) {
           alt=""
           width={1000}
           height={1000}
-          crossOrigin="anonymous"
         />
       ) : (
         <svg
