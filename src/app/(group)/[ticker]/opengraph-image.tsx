@@ -39,7 +39,7 @@ export default async function Image({ params: { ticker } }: Props) {
           }}
         >
           <img
-            src={getImageUrl(group?.logo ?? '')}
+            src={getImageUrl(group?.logo)}
             style={{
               height: 100,
               objectFit: 'cover',
