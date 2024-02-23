@@ -2,7 +2,20 @@
 const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['egbnfonqeqseuptbfkyp.supabase.co', 'k-tea.love'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'egbnfonqeqseuptbfkyp.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'love.kyber.kr',
+      },
+      {
+        protocol: 'https',
+        hostname: 'k-tea.love',
+      },
+    ],
   },
 }
 

@@ -4,16 +4,21 @@ import { useRecoilValue } from 'recoil'
 
 import { selectState } from '@/states/select'
 
-import TeamList from './List'
+import GroupList from './List'
 import AppBar from './AppBar'
+import RequestRouteList from './RequestRouteList'
 
-export default function TeamSelection() {
+export default function GroupSelection() {
   const selection = useRecoilValue(selectState)
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-white">
       <AppBar />
-      <TeamList gender={selection.gender} type={selection.type} />
+      {selection.type === 'request' ? (
+        <RequestRouteList />
+      ) : (
+        <GroupList gender={selection.gender} />
+      )}
     </div>
   )
 }

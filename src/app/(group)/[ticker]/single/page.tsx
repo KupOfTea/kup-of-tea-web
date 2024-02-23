@@ -9,8 +9,9 @@ import SingleCard from '@/components/SingleCard'
 
 export default function SinglePage() {
   const { ticker } = useParams()
+
   return (
-    <div className="flex min-h-screen flex-col items-center bg-white">
+    <>
       <BackButtonAppBar title="1인용 취향표" />
       <SingleCard />
       <button
@@ -19,6 +20,6 @@ export default function SinglePage() {
       >
         다운로드
       </button>
-    </div>
+    </>
   )
 }

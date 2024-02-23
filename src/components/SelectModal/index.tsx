@@ -1,67 +1,29 @@
 'use client'
 
-import { useQuery } from '@supabase-cache-helpers/postgrest-swr'
-import { useParams, usePathname } from 'next/navigation'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import Image from 'next/image'
-import uuid from 'react-uuid'
+import { useParams } from 'next/navigation'
+import { useRecoilValue } from 'recoil'
 
-import client from '@/client/base'
-import { ArtistMember } from '@/types/artistMember'
 import { modalState } from '@/states/modal'
-import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
 import { NINE_ITEMS } from '@/constants/question'
-import { answerState } from '@/states/answer'
-import { generateAnswerKey } from '@/utils/generateAnswerKey'
+import { useMembers } from '@/services/members'
+import MemberGrid from '@/containers/member'
 
 interface Props {
   isOpen: boolean
   close: () => void
   userId?: string
+  isCustomMode?: boolean
 }
 
-export default function SelectModal({ isOpen, close, userId }: Props) {
+export default function SelectModal({
+  isOpen,
+  close,
+  userId,
+  isCustomMode = false,
+}: Props) {
   const modal = useRecoilValue(modalState)
-
-  const type = usePathname().split('/')[2]
-
-  const answerKey = generateAnswerKey(modal.activeButtonIdx, type, userId)
-  const setAnswer = useSetRecoilState(answerState(answerKey))
-  const { ticker } = useParams()
-
-  const { data } = useQuery(
-    client
-      .from('teams')
-      .select(`artist_members(id, name, profile_image)`)
-      .eq('ticker', ticker)
-      .order('id', { referencedTable: 'artist_members', ascending: true }),
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    },
-  )
-
-  const artistMembersRaw = data?.[0]?.artist_members || []
-  const emptyArtistMember: ArtistMember = {
-    id: 0,
-    name: '선택 X',
-    profileImage: '/empty.jpg',
-  } as ArtistMember
-
-  const artistMembers: ArtistMember[] = [
-    emptyArtistMember,
-    ...(convertObjectKeysToCamelCase(
-      artistMembersRaw,
-    ) as unknown as ArtistMember[]),
-  ]
-
-  const handleSelection = (member: ArtistMember) => {
-    setAnswer({
-      id: answerKey,
-      artistMember: member,
-    })
-    close()
-  }
+  const { ticker } = useParams() as { ticker: string }
+  const { members, isLoading, isError } = useMembers(ticker)
 
   return (
     isOpen && (
@@ -77,26 +39,11 @@ export default function SelectModal({ isOpen, close, userId }: Props) {
                 <span className="mx-3 text-white bg-black px-3 py-1.5 rounded-2xl text-sm font-bold">
                   {NINE_ITEMS[modal.activeButtonIdx]}
                 </span>
-                <div className="grid grid-cols-3">
-                  {artistMembers.map((member, idx) => {
-                    return (
-                      <button
-                        key={uuid()}
-                        onClick={() => handleSelection(member)}
-                        className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
-                      >
-                        <Image
-                          className="object-cover object-center rounded-md aspect-square mb-1"
-                          src={`${member.profileImage}`}
-                          alt=""
-                          width={1000}
-                          height={1000}
-                        />
-                        <p className="text-gray-900 text-sm font-semibold">{`${member.name}`}</p>
-                      </button>
-                    )
-                  })}
-                </div>
+                {isLoading && <p>Loading...</p>}
+                {isError && <p>Loading failed</p>}
+                {members && (
+                  <MemberGrid members={members} userId={userId} close={close} />
+                )}
               </div>
             </div>
           </div>

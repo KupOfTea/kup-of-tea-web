@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
+import Script from 'next/script'
 
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import DefaultLayout from '@/layouts/DefaultLayout'
 
-import { PHProvider } from './providers'
+import { Providers } from './providers'
 
 const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
   ssr: false,
@@ -61,14 +61,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <PHProvider>
-        <body className="font-suite flex items-center justify-center min-h-screen bg-gray-100">
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-MJMY1VFJB8"
+        />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MJMY1VFJB8');
+          `}
+        </Script>
+      </head>
+
+      <body className="font-suite flex items-center justify-center min-h-screen bg-gray-100">
+        <Providers>
           <PostHogPageView />
-          <div className="max-w-lg w-full">
-            <DefaultLayout>{children}</DefaultLayout>
-          </div>
-        </body>
-      </PHProvider>
+          <div className="max-w-lg w-full">{children}</div>
+        </Providers>
+      </body>
     </html>
   )
 }

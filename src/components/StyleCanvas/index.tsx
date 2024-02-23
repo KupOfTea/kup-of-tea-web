@@ -145,7 +145,7 @@ export default function StyleCanvas() {
   }
 
   return (
-    <div className="bg-white w-full">
+    <div className="w-full min-h-screen bg-gray-100 flex flex-col justify-center">
       <canvas
         ref={canvasRef}
         width={1400}
@@ -154,7 +154,7 @@ export default function StyleCanvas() {
       />
       <button
         onClick={saveAsImage}
-        className={`fixed rounded-[28px] left-1/2 -translate-x-1/2 text-center items-center justify-center py-[16px] bg-gray-900 text-white font-bold text-[13px] w-[85%] bottom-[35px] ${'block'}`}
+        className={`fixed max-w-md rounded-[28px] left-1/2 -translate-x-1/2 text-center items-center justify-center py-[16px] bg-gray-900 text-white font-bold text-[13px] w-[85%] bottom-[35px] ${'block'}`}
       >
         저장하기
       </button>
