@@ -8,10 +8,9 @@ import GroupCard from './Card'
 
 interface ListProps {
   gender: string
-  type: string
 }
 
-export default function GroupList({ gender, type }: ListProps) {
+export default function GroupList({ gender }: ListProps) {
   const { groups, isLoading, isError } = useGroups(gender)
 
   return (

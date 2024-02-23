@@ -17,7 +17,7 @@ export default function GroupSelection() {
       {selection.type === 'request' ? (
         <RequestRouteList />
       ) : (
-        <GroupList gender={selection.gender} type={selection.type} />
+        <GroupList gender={selection.gender} />
       )}
     </div>
   )

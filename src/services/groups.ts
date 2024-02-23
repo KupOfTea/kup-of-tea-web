@@ -1,7 +1,13 @@
 import useSWR from 'swr'
 import { z } from 'zod'
 
-import { Group, GroupAPISchema } from '@/client/groups'
+export const GroupAPISchema = z.object({
+  name: z.string(),
+  logo: z.string(),
+  ticker: z.string().nullish(),
+})
+
+export type Group = z.infer<typeof GroupAPISchema>
 
 export type GroupsResponse = Group[]
 
