@@ -3,7 +3,7 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useOverlay } from '@toss/use-overlay'
 import classNames from 'classnames'
-import { useParams, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import { modalState } from '@/states/modal'
 import { NINE_ITEMS } from '@/constants/question'

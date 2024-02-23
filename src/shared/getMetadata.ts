@@ -44,7 +44,7 @@ export const getMetadata = ({
       description,
       images: [
         {
-          url: url,
+          url,
           secureUrl: url,
           width: 800,
           height: 400,

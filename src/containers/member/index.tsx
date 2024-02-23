@@ -2,28 +2,29 @@
 
 import { usePathname } from 'next/navigation'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import uuid from 'react-uuid'
+import { useEffect, useState } from 'react'
 
 import { modalState } from '@/states/modal'
-
 import { answerState } from '@/states/answer'
 import { generateAnswerKey } from '@/utils/generateAnswerKey'
 import { Member } from '@/services/members'
 import { getImageUrl } from '@/shared/getImageUrl'
+
 import SkeletonImage from '@/components/SkeletonImage'
-import { useState } from 'react'
 
 interface Props {
   members: Member[]
   userId?: string
+  close: () => void
 }
 
-export default function MemberGrid({ members, userId }: Props) {
+export default function MemberGrid({ members, userId, close }: Props) {
   const modal = useRecoilValue(modalState)
   const type = usePathname().split('/')[2]
   const answerKey = generateAnswerKey(modal.activeButtonIdx, type, userId)
   const setAnswer = useSetRecoilState(answerState(answerKey))
+  const [memberList, setMemberList] = useState<Member[]>(members)
 
   const handleSelection = (member: Member) => {
     setAnswer({
@@ -33,17 +34,21 @@ export default function MemberGrid({ members, userId }: Props) {
     close()
   }
 
-  members = [
-    {
-      name: '선택 X',
-      profileImage: '/empty.jpg',
-    },
-    ...members,
-  ]
+  useEffect(() => {
+    const tmpMembers = [
+      {
+        name: '선택 X',
+        profileImage: '/empty.jpg',
+      },
+      ...members,
+    ]
+
+    setMemberList(tmpMembers)
+  }, [members])
 
   return (
     <div className="grid grid-cols-3">
-      {members.map((member) => {
+      {memberList.map((member) => {
         return (
           <button
             key={uuid()}

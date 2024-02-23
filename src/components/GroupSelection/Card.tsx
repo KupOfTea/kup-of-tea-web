@@ -1,11 +1,11 @@
 'use client'
 
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 import { Group } from '@/client/groups'
-import SkeletonImage from '../SkeletonImage'
 import { getImageUrl } from '@/shared/getImageUrl'
+
+import SkeletonImage from '../SkeletonImage'
 
 interface Props {
   group: Group

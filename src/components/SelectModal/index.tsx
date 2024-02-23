@@ -1,19 +1,11 @@
 'use client'
 
-import { useQuery } from '@supabase-cache-helpers/postgrest-swr'
-import { useParams, usePathname } from 'next/navigation'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import Image from 'next/image'
-import uuid from 'react-uuid'
+import { useParams } from 'next/navigation'
+import { useRecoilValue } from 'recoil'
 
-import client from '@/client/base'
-import { ArtistMember } from '@/types/artistMember'
 import { modalState } from '@/states/modal'
-import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
 import { NINE_ITEMS } from '@/constants/question'
-
-import { Member, useMembers } from '@/services/members'
-
+import { useMembers } from '@/services/members'
 import MemberGrid from '@/containers/member'
 
 interface Props {
@@ -49,7 +41,9 @@ export default function SelectModal({
                 </span>
                 {isLoading && <p>Loading...</p>}
                 {isError && <p>Loading failed</p>}
-                {members && <MemberGrid members={members} userId={userId} />}
+                {members && (
+                  <MemberGrid members={members} userId={userId} close={close} />
+                )}
               </div>
             </div>
           </div>

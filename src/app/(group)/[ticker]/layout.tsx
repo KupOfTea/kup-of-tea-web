@@ -21,14 +21,14 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(url),
-    title: title,
-    description: description,
+    title,
+    description,
     openGraph: {
       type: 'website',
       locale: 'ko_KR',
-      url: url,
-      title: title,
-      description: description,
+      url,
+      title,
+      description,
       images: [
         {
           url: getImageUrl(group?.logo ?? ''),
@@ -41,7 +41,7 @@ export async function generateMetadata({
     twitter: {
       creator: '@DevvTyga',
       card: 'summary_large_image',
-      title: title,
+      title,
       description: title,
       site: url,
       images: [

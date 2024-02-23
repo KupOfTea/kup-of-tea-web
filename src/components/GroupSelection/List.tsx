@@ -2,8 +2,9 @@
 
 import uuid from 'react-uuid'
 
-import GroupCard from './Card'
 import { useGroups } from '@/services/groups'
+
+import GroupCard from './Card'
 
 interface ListProps {
   gender: string

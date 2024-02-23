@@ -1,10 +1,10 @@
-import { Group } from '@/client/groups'
-import HomeButtonAppBar from '@/components/HomeButtonAppBar'
-import NavigationButton from '@/components/NavigationButton'
-
-import { getImageUrl } from '@/shared/getImageUrl'
 import classNames from 'classnames'
 import Image from 'next/image'
+
+import { Group } from '@/client/groups'
+import { getImageUrl } from '@/shared/getImageUrl'
+
+import NavigationButton from '@/components/NavigationButton'
 
 interface Props {
   group: Group

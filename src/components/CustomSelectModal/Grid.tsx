@@ -7,6 +7,7 @@ import client from '@/client/base'
 import { ArtistMember } from '@/types/artistMember'
 import { TeamWithId } from '@/types/team'
 import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
+
 import SkeletonImage from '../SkeletonImage'
 
 interface GridProps {

@@ -1,5 +1,6 @@
-import { fetchAPI } from '@/services/base'
 import { z } from 'zod'
+
+import { fetchAPI } from '@/services/base'
 
 export const GroupAPISchema = z.object({
   name: z.string(),

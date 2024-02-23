@@ -1,9 +1,11 @@
 'use client'
 
-import HomeButtonAppBar from '@/components/HomeButtonAppBar'
+import { useParams } from 'next/navigation'
+
 import GroupPage from '@/containers/group'
 import { useGroup } from '@/services/groups'
-import { useParams } from 'next/navigation'
+
+import HomeButtonAppBar from '@/components/HomeButtonAppBar'
 
 export default function GroupHomePage() {
   const { ticker } = useParams() as { ticker: string }

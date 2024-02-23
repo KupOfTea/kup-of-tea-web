@@ -1,6 +1,7 @@
-import { Group, GroupAPISchema } from '@/client/groups'
 import useSWR from 'swr'
 import { z } from 'zod'
+
+import { Group, GroupAPISchema } from '@/client/groups'
 
 export type GroupsResponse = Group[]
 
