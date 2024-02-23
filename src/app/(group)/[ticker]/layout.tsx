@@ -20,7 +20,7 @@ export async function generateMetadata({
   const description = `${group?.name ?? ''} 취향표를 만들어 보세요.`
 
   return {
-    metadataBase: new URL(url),
+    metadataBase: new URL('https://k-tea.love'),
     title,
     description,
     openGraph: {
