@@ -1,7 +1,7 @@
 interface BaseArtistMember {
-  id: number
-  name: string | null
-  profileImage: string | null
+  id: number | null | undefined
+  name: string | null | undefined
+  profileImage: string | null | undefined
 }
 
 export interface ArtistMember extends BaseArtistMember {}

@@ -12,7 +12,7 @@ import UserInput from '@/components/UserInput'
 
 export default function MultiplePage() {
   return (
-    <div className="flex min-h-screen flex-col items-center bg-white pb-[200px]">
+    <div className="w-full flex flex-col items-center bg-white pb-[200px]">
       <BackButtonAppBar title="다인용 취향표" />
       <div className="flex flex-col items-center space-y-10 justify-start w-full px-5 py-10 min-h-screen bg-white">
         <div className="flex flex-col items-center">

@@ -1,0 +1,26 @@
+'use client'
+
+import uuid from 'react-uuid'
+
+import GroupCard from './Card'
+import { useGroups } from '@/services/groups'
+
+interface ListProps {
+  gender: string
+  type: string
+}
+
+export default function GroupList({ gender, type }: ListProps) {
+  const { groups, isLoading, isError } = useGroups(gender)
+
+  return (
+    <div className="my-5 w-full flex flex-col border-t border-base-200">
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Loading failed</p>}
+      {groups &&
+        groups.map((group) => {
+          return <GroupCard key={uuid()} group={group} />
+        })}
+    </div>
+  )
+}

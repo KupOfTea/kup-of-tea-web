@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import uuid from 'react-uuid'
 import { useEffect, useState } from 'react'
 
@@ -8,6 +7,7 @@ import client from '@/client/base'
 import { ArtistMember } from '@/types/artistMember'
 import { TeamWithId } from '@/types/team'
 import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
+import SkeletonImage from '../SkeletonImage'
 
 interface GridProps {
   handleSelection: (member: ArtistMember) => void
@@ -131,12 +131,12 @@ export default function SelectGrid({ handleSelection }: GridProps) {
                 onClick={() => handleSelection(member)}
                 className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
               >
-                <Image
+                <SkeletonImage
                   className="object-cover object-center rounded-md aspect-square mb-1"
-                  src={`${member.profileImage}`}
-                  alt=""
-                  width={1000}
-                  height={1000}
+                  src={member.profileImage || ''}
+                  alt={member.name || ''}
+                  width={300}
+                  height={300}
                 />
                 <p className="text-gray-900 text-sm font-semibold">{`${member.name}`}</p>
               </button>
@@ -152,12 +152,12 @@ export default function SelectGrid({ handleSelection }: GridProps) {
                 onClick={() => handleClick(team)}
                 className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
               >
-                <Image
+                <SkeletonImage
                   className="object-contain object-center aspect-square mb-1"
-                  src={`${team.logo}`}
-                  alt=""
-                  width={1000}
-                  height={1000}
+                  src={team.logo ?? ''}
+                  alt={team.name ?? ''}
+                  width={300}
+                  height={300}
                 />
                 <p className="text-gray-900 text-[7px] font-semibold">{`${team.name}`}</p>
               </button>

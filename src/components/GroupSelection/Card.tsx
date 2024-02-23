@@ -3,33 +3,35 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-import { Team } from '@/types/team'
+import { Group } from '@/client/groups'
+import SkeletonImage from '../SkeletonImage'
+import { getImageUrl } from '@/shared/getImageUrl'
 
 interface Props {
-  team: Team
+  group: Group
 }
 
-export default function TeamCard({ team }: Props) {
+export default function GroupCard({ group }: Props) {
   const router = useRouter()
 
-  const handleClick = (item: Team) => {
+  const handleClick = (item: Group) => {
     router.push(`/${item.ticker}`)
   }
 
   return (
     <button
-      onClick={() => handleClick(team)}
+      onClick={() => handleClick(group)}
       className="w-full flex flex-row py-4 px-5 cursor-pointer justify-between text-gray-900 text-base font-bold border-b border-base-200"
     >
       <div className="flex flex-row items-start justify-start space-x-2">
-        <Image
+        <SkeletonImage
           className="object-contain object-center aspect-square w-6 h-6"
-          src={`${team.logo}`}
+          src={getImageUrl(group.logo ?? '')}
           alt=""
           width={30}
           height={30}
         />
-        <div>{team.name}</div>
+        <div>{group.name}</div>
       </div>
       <div>→</div>
     </button>
