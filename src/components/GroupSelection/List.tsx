@@ -18,9 +18,13 @@ export default function GroupList({ gender }: ListProps) {
       {isLoading && <p>Loading...</p>}
       {isError && <p>Loading failed</p>}
       {groups &&
-        groups.map((group) => {
-          return <GroupCard key={uuid()} group={group} />
-        })}
+        groups
+          .sort((a, b) =>
+            a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
+          )
+          .map((group) => {
+            return <GroupCard key={uuid()} group={group} />
+          })}
     </div>
   )
 }
