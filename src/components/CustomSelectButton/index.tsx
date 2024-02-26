@@ -9,6 +9,7 @@ import { modalState } from '@/states/modal'
 import { NINE_ITEMS } from '@/constants/question'
 import { answerState } from '@/states/answer'
 import { generateAnswerKey } from '@/utils/generateAnswerKey'
+import { getImageUrl } from '@/shared/getImageUrl'
 
 import CustomSelectModal from '../CustomSelectModal'
 
@@ -54,10 +55,14 @@ export default function CustomSelectButton({ index, userId }: Props) {
       {answer?.artistMember?.profileImage && answer?.artistMember?.name ? (
         <img
           className={imageClass}
-          src={`${answer?.artistMember?.profileImage}`}
+          src={
+            answer?.artistMember?.profileImage === '/empty.jpg'
+              ? answer?.artistMember?.profileImage
+              : getImageUrl(answer?.artistMember?.profileImage)
+          }
           alt=""
-          width={1000}
-          height={1000}
+          width={300}
+          height={300}
         />
       ) : (
         <svg

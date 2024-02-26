@@ -22,7 +22,11 @@ export default function Members({ currentMembers, handleSelection }: Props) {
           >
             <SkeletonImage
               className="object-cover object-center rounded-md aspect-square mb-1"
-              src={getImageUrl(member.profileImage ?? '')}
+              src={
+                member.profileImage === '/empty.jpg'
+                  ? member.profileImage
+                  : getImageUrl(member?.profileImage ?? '')
+              }
               alt={member.name ?? ''}
               width={300}
               height={300}
