@@ -33,7 +33,6 @@ export default function SkeletonImage({
 }: Props) {
   return (
     <img
-      crossOrigin="anonymous"
       className={className}
       src={src}
       alt={alt}

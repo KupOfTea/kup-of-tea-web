@@ -12,7 +12,9 @@ export type Group = z.infer<typeof GroupAPISchema>
 export type GroupsResponse = Group[]
 
 const fetcher = (url: string) =>
-  fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${url}`).then((r) => r.json())
+  fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${url}`).then((r) => {
+    return r.json()
+  })
 
 export const useGroups = (type: string, gender: string) => {
   const { data, error } = useSWR<GroupsResponse | undefined>(
