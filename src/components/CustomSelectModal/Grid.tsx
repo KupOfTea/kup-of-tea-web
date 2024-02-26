@@ -19,7 +19,7 @@ export default function SelectGrid({ handleSelection }: GridProps) {
   const [currentGroup, setCurrentGroup] = useState<Group | null>(null)
   const [currentMembers, setCurrentMembers] = useState<Member[]>([])
 
-  async function handleTypeSelection(type: string, gender: string) {
+  async function handleTypeSelection(gender: string, type: string) {
     setCurrentGender(gender)
     setArtistType(type)
 

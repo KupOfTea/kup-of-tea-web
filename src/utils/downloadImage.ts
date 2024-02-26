@@ -7,6 +7,7 @@ export const downloadImage = (id: string, ticker: string) => {
   html2canvas(element as HTMLElement, {
     useCORS: true,
     logging: true,
+    allowTaint: true,
   }).then((canvas) => {
     canvas.toBlob((blob) => {
       saveAs(blob as Blob, `${ticker}.png`)
