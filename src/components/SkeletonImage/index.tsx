@@ -11,7 +11,6 @@
 // />
 
 import React from 'react'
-import Image from 'next/image'
 
 interface Props {
   src: string
@@ -33,14 +32,12 @@ export default function SkeletonImage({
   alt,
 }: Props) {
   return (
-    <Image
+    <img
       className={className}
       src={src}
       alt={alt}
       width={width}
       height={height}
-      placeholder="blur"
-      blurDataURL={blurDataURL}
     />
   )
 }

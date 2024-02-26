@@ -1,73 +1,58 @@
-'use client'
-
-import uuid from 'react-uuid'
 import { useEffect, useState } from 'react'
 
-import client from '@/client/base'
-import { ArtistMember } from '@/types/artistMember'
-import { TeamWithId } from '@/types/team'
-import { convertObjectKeysToCamelCase } from '@/utils/camelCase'
+import { Group } from '@/services/groups'
+import { Member } from '@/services/members'
+import { getGroups } from '@/client/groups'
+import { getMembers } from '@/client/members'
 
-import SkeletonImage from '../SkeletonImage'
+import Groups from './Groups'
+import Members from './Members'
 
 interface GridProps {
-  handleSelection: (member: ArtistMember) => void
+  handleSelection: (member: Member) => void
 }
 
 export default function SelectGrid({ handleSelection }: GridProps) {
   const [currentGender, setCurrentGender] = useState('boy')
   const [artistType, setArtistType] = useState('group')
-  const [teams, setTeams] = useState<TeamWithId[]>([])
-  const [currentTeam, setCurrentTeam] = useState<TeamWithId | null>(null)
-  const [currentArtistMembers, setCurrentArtistMembers] = useState<
-    ArtistMember[]
-  >([])
+  const [groups, setGroups] = useState<Group[]>([])
+  const [currentGroup, setCurrentGroup] = useState<Group | null>(null)
+  const [currentMembers, setCurrentMembers] = useState<Member[]>([])
 
-  async function handleTypeSelection(gender: string, type: string) {
+  async function handleTypeSelection(type: string, gender: string) {
     setCurrentGender(gender)
     setArtistType(type)
 
-    const { data: teamData } = await client
-      .from('teams')
-      .select('id, name, ticker, logo')
-      .eq('type', type)
-      .like('gender', `%${gender}%`)
-      .order('name', { ascending: true })
+    const groupData = await getGroups(type, gender)
 
-    const teamList: TeamWithId[] = teamData || []
-    setTeams(teamList)
+    setGroups(groupData)
   }
 
   useEffect(() => {
     handleTypeSelection('boy', 'group')
   }, [])
 
-  const handleClick = async (team: TeamWithId) => {
-    setCurrentTeam(team)
+  useEffect(() => {}, [currentGroup])
 
-    const { data: artistData } = await client
-      .from('artist_members')
-      .select(`id, name, profile_image`)
-      .eq('team_id', team.id)
-      .order('id', { ascending: true })
+  const handleClick = async (group: Group) => {
+    setCurrentGroup(group)
 
-    const artistMembersRaw = artistData || []
-    const artistMembers: ArtistMember[] = convertObjectKeysToCamelCase(
-      artistMembersRaw,
-    ) as unknown as ArtistMember[]
+    const membersData = await getMembers(group.ticker ?? '')
 
-    const emptyArtistMember: ArtistMember = {
-      id: 0,
-      name: '선택 X',
-      profileImage: '/empty.jpg',
-    } as ArtistMember
+    const tmpMembers = [
+      {
+        name: '선택 X',
+        profileImage: '/empty.jpg',
+      },
+      ...membersData,
+    ]
 
-    setCurrentArtistMembers([emptyArtistMember, ...artistMembers] || [])
+    setCurrentMembers(tmpMembers)
   }
 
   return (
     <div className="flex flex-col w-full">
-      {currentTeam == null && (
+      {currentGroup == null && (
         <div className="py-2 mx-3 flex flex-row items-center text-sm my-2">
           <button
             onClick={() => {
@@ -105,7 +90,7 @@ export default function SelectGrid({ handleSelection }: GridProps) {
           </button>
           <button
             onClick={() => {
-              handleTypeSelection('', 'solo')
+              handleTypeSelection('all', 'solo')
             }}
             className="flex flex-col items-center font-bold max-w-fit px-1"
           >
@@ -122,48 +107,13 @@ export default function SelectGrid({ handleSelection }: GridProps) {
           </button>
         </div>
       )}
-      {currentTeam && currentArtistMembers ? (
-        <div className="grid grid-cols-3">
-          {currentArtistMembers.map((member) => {
-            return (
-              <button
-                key={uuid()}
-                onClick={() => handleSelection(member)}
-                className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
-              >
-                <SkeletonImage
-                  className="object-cover object-center rounded-md aspect-square mb-1"
-                  src={member.profileImage || ''}
-                  alt={member.name || ''}
-                  width={300}
-                  height={300}
-                />
-                <p className="text-gray-900 text-sm font-semibold">{`${member.name}`}</p>
-              </button>
-            )
-          })}
-        </div>
+      {currentGroup && currentMembers ? (
+        <Members
+          currentMembers={currentMembers}
+          handleSelection={handleSelection}
+        />
       ) : (
-        <div className="grid grid-cols-5 gap-3">
-          {teams.map((team) => {
-            return (
-              <button
-                key={uuid()}
-                onClick={() => handleClick(team)}
-                className="flex flex-col items-center space-y-3 cursor-pointer justify-center"
-              >
-                <SkeletonImage
-                  className="object-contain object-center w-8 h-8 aspect-square"
-                  src={team.logo ?? ''}
-                  alt={team.name ?? ''}
-                  width={100}
-                  height={100}
-                />
-                <p className="text-gray-900 text-[8px] font-semibold">{`${team.name}`}</p>
-              </button>
-            )
-          })}
-        </div>
+        <Groups groups={groups} handleClick={handleClick} />
       )}
     </div>
   )

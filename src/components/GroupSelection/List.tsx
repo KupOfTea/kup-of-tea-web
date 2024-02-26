@@ -7,11 +7,12 @@ import { useGroups } from '@/services/groups'
 import GroupCard from './Card'
 
 interface ListProps {
+  type: string
   gender: string
 }
 
-export default function GroupList({ gender }: ListProps) {
-  const { groups, isLoading, isError } = useGroups(gender)
+export default function GroupList({ type, gender }: ListProps) {
+  const { groups, isLoading, isError } = useGroups(type, gender)
 
   return (
     <div className="my-5 w-full flex flex-col border-t border-base-200">

@@ -6,5 +6,4 @@ export const fetchAPI = ky.create({
     'Content-Type': 'application/json',
   },
 })
-
 export const fetcher = (url: string) => fetch(url).then((r) => r.json())

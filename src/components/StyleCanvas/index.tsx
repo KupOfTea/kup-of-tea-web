@@ -9,6 +9,7 @@ import { NINE_ITEMS } from '@/constants/question'
 import { allAnswersSelector } from '@/states/answer'
 import { allUsersSelector } from '@/states/user'
 import { Answer } from '@/types/answer'
+import { getImageUrl } from '@/shared/getImageUrl'
 
 export default function StyleCanvas() {
   const { ticker } = useParams()
@@ -102,7 +103,11 @@ export default function StyleCanvas() {
 
           const memberImage = new Image()
           memberImage.crossOrigin = 'anonymous'
-          memberImage.src = `${answer.artistMember.profileImage}`
+
+          memberImage.src =
+            answer?.artistMember?.profileImage === '/empty.jpg'
+              ? answer?.artistMember?.profileImage
+              : getImageUrl(answer?.artistMember?.profileImage ?? '')
 
           memberImage.onload = () => {
             ctx.drawImage(memberImage, imageX, imageY, imageWidth, imageHeight)

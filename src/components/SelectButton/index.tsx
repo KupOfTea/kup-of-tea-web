@@ -55,9 +55,12 @@ export default function SelectButton({ index, userId }: Props) {
       {answer?.artistMember?.profileImage && answer?.artistMember?.name ? (
         <img
           className={imageClass}
-          src={answer?.artistMember?.profileImage === '/empty.jpg'
-                  ? answer?.artistMember?.profileImage
-                  : getImageUrl(answer?.artistMember?.profileImage ?? '')}
+          crossOrigin="anonymous"
+          src={
+            answer?.artistMember?.profileImage === '/empty.jpg'
+              ? answer?.artistMember?.profileImage
+              : getImageUrl(answer?.artistMember?.profileImage ?? '')
+          }
           alt=""
           width={1000}
           height={1000}

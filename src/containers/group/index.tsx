@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import Image from 'next/image'
 
 import { Group } from '@/client/groups'
 import { getImageUrl } from '@/shared/getImageUrl'
@@ -23,13 +22,12 @@ const GroupPage = ({ group }: Props) => {
         <div>취향표</div>
       </div>
       {group?.logo ? (
-        <Image
+        <img
           className="object-contain w-[50%] aspect-square mb-10"
           src={getImageUrl(group?.logo)}
           alt=""
           width={1000}
           height={1000}
-          unoptimized
         />
       ) : (
         <div className="object-cover w-[50%] aspect-square mb-10" />
