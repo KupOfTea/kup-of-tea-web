@@ -9,7 +9,6 @@ import { modalState } from '@/states/modal'
 import { NINE_ITEMS } from '@/constants/question'
 import { answerState } from '@/states/answer'
 import { generateAnswerKey } from '@/utils/generateAnswerKey'
-import { getImageUrl } from '@/shared/getImageUrl'
 
 import SelectModal from '../SelectModal'
 
@@ -55,9 +54,11 @@ export default function SelectButton({ index, userId }: Props) {
       {answer?.artistMember?.profileImage && answer?.artistMember?.name ? (
         <img
           className={imageClass}
-          src={answer?.artistMember?.profileImage === '/empty.jpg'
-                  ? answer?.artistMember?.profileImage
-                  : getImageUrl(answer?.artistMember?.profileImage ?? '')}
+          crossOrigin="anonymous"
+          // src={answer?.artistMember?.profileImage === '/empty.jpg'
+          //         ? answer?.artistMember?.profileImage
+          //         : getImageUrl(answer?.artistMember?.profileImage ?? '')}
+          src="https://love.kyber.kr/static/images/fd0d1ae830b5da88b0ad8ca47ff44171dfc066ffb82cd9187de82b8c9e91ff6b.jpeg"
           alt=""
           width={1000}
           height={1000}

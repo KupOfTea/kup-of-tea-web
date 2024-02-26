@@ -3,11 +3,11 @@
 import { usePathname } from 'next/navigation'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import { ArtistMember } from '@/types/artistMember'
 import { modalState } from '@/states/modal'
 import { NINE_ITEMS } from '@/constants/question'
 import { answerState } from '@/states/answer'
 import { generateAnswerKey } from '@/utils/generateAnswerKey'
+import { Member } from '@/services/members'
 
 import SelectGrid from './Grid'
 
@@ -25,7 +25,7 @@ export default function CustomSelectModal({ isOpen, close, userId }: Props) {
   const answerKey = generateAnswerKey(modal.activeButtonIdx, type, userId)
   const setAnswer = useSetRecoilState(answerState(answerKey))
 
-  const handleSelection = (member: ArtistMember) => {
+  const handleSelection = (member: Member) => {
     setAnswer({
       id: answerKey,
       artistMember: member,

@@ -14,3 +14,12 @@ export async function getGroup(ticker: string) {
   const fetched = await fetchAPI.get(`group/get/${ticker}`).json()
   return GroupAPISchema.parse(fetched)
 }
+
+export async function getGroups(type: string, gender: string) {
+  const fetched = await fetchAPI.get(`groups/get/${type}/${gender}`).json()
+  const groups = fetched
+    ? z.array(GroupAPISchema).safeParse(fetched)
+    : undefined
+
+  return groups?.success ? (groups?.data as Group[]) : []
+}

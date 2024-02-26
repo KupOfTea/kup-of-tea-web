@@ -13,15 +13,15 @@ if (typeof window !== 'undefined') {
   })
 }
 
-function PHProvider({ children }: { children: React.ReactNode }) {
+const PHProvider = ({ children }: { children: React.ReactNode }) => {
   return <PostHogProvider client={posthog}>{children}</PostHogProvider>
 }
 
-function SWRProvider({ children }: { children: React.ReactNode }) {
+const SWRProvider = ({ children }: { children: React.ReactNode }) => {
   return <SWRConfig value={{ revalidateOnFocus: false }}>{children}</SWRConfig>
 }
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <PHProvider>
       <RecoilRoot>
