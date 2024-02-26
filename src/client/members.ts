@@ -1,10 +1,11 @@
 import { z } from 'zod'
 
-import { fetchAPI } from '@/services/base'
 import { Member, MemberAPISchema } from '@/services/members'
 
 export async function getMembers(ticker: string) {
-  const fetched = await fetchAPI.get(`members/get/${ticker}`).json()
+  const fetched = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/members/get/${ticker}`,
+  ).then((r) => r.json())
 
   const members = fetched
     ? z.array(MemberAPISchema).safeParse(fetched)

@@ -1,7 +1,5 @@
 import { z } from 'zod'
 
-import { fetchAPI } from '@/services/base'
-
 export const GroupAPISchema = z.object({
   name: z.string(),
   logo: z.string(),
@@ -11,12 +9,18 @@ export const GroupAPISchema = z.object({
 export type Group = z.infer<typeof GroupAPISchema>
 
 export async function getGroup(ticker: string) {
-  const fetched = await fetchAPI.get(`group/get/${ticker}`).json()
+  const fetched = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/group/get/${ticker}`,
+  ).then((r) => r.json())
+
   return GroupAPISchema.parse(fetched)
 }
 
 export async function getGroups(type: string, gender: string) {
-  const fetched = await fetchAPI.get(`groups/get/${type}/${gender}`).json()
+  const fetched = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/groups/get/${type}/${gender}`,
+  ).then((r) => r.json())
+
   const groups = fetched
     ? z.array(GroupAPISchema).safeParse(fetched)
     : undefined
