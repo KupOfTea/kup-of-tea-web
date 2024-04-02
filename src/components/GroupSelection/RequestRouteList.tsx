@@ -1,6 +1,6 @@
 export default function RequestRouteList() {
   return (
-    <div className="my-5 w-full flex flex-col border-t border-base-200">
+    <div className="mb-5 w-full flex flex-col">
       <div className="w-full">
         <a
           href="https://forms.gle/xkrDGoCzuMKsBa6d6"

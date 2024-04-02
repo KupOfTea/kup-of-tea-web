@@ -10,7 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        suite: ['SUITE Variable', 'sans-serif'],
+        // suite: ['SUITE Variable', 'sans-serif'],
+        pretendard: ['Pretendard Variable', 'sans-serif'],
       },
       colors: {
         background: 'hsl(0, 0%, 100%)', // --base-white
