@@ -20,9 +20,7 @@ export default function SinglePage() {
   return (
     <div className="flex flex-col w-full h-screen bg-[#FAFAFA]">
       <BackButtonAppBar title="개인용 취향표" />
-      <div className="px-5 py-9">
-        <SingleCard />
-      </div>
+      <SingleCard />
       <div className="bg-white fixed max-w-lg flex left-0 right-0 bottom-0 w-full justify-center items-center py-3 px-5">
         <button
           onClick={() => downloadImage('card', ticker as string)}

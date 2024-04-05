@@ -37,19 +37,19 @@ export default function SelectButton({ index, userId }: Props) {
   }
 
   const titleClass = classNames(
-    'font-extrabold text-black',
-    type === 'single' ? 'text-sm' : 'text-[10px]',
+    'text-black text-opacity-80 w-full text-center font-semibold tracking-[-2%] mt-1',
+    type === 'multiple' ? 'text-[12px]' : 'text-[14px]',
   )
 
   const imageClass = classNames(
-    'object-cover object-center rounded-sm aspect-square my-1',
-    type === 'multiple' ? 'w-10' : 'w-full',
+    'object-cover object-center aspect-square my-1',
+    type === 'multiple' ? 'w-full rounded-[4px]' : 'w-full rounded-sm ',
   )
 
   return (
     <button
       onClick={() => openModal()}
-      className="w-full flex flex-col items-stretch text-center cursor-pointer justify-center"
+      className="w-full flex flex-col items-center text-center cursor-pointer"
     >
       {answer?.artistMember?.profileImage && answer?.artistMember?.name ? (
         <img
@@ -64,11 +64,16 @@ export default function SelectButton({ index, userId }: Props) {
           height={100}
         />
       ) : (
-        <div className="aspect-square flex items-center justify-center w-full my-1 bg-black bg-opacity-5 rounded-sm">
+        <div
+          className={classNames(
+            'aspect-square flex items-center justify-center bg-black bg-opacity-5',
+            type === 'multiple' ? 'w-full rounded-[4px]' : 'w-full rounded-sm ',
+          )}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
+            width={type === 'multiple' ? '16' : '25'}
+            height={type === 'multiple' ? '16' : '25'}
             viewBox="0 0 25 25"
             fill="none"
           >
@@ -95,9 +100,7 @@ export default function SelectButton({ index, userId }: Props) {
           </svg>
         </div>
       )}
-      <span className="w-full text-center text-xs font-semibold tracking-[-2%] leading-[130%] mt-1">
-        {NINE_ITEMS[index]}
-      </span>
+      <span className={titleClass}>{NINE_ITEMS[index]}</span>
     </button>
   )
 }
