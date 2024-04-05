@@ -32,20 +32,19 @@ export default function SelectModal({
           className="fixed inset-0 w-full h-full bg-black opacity-40"
           onClick={() => close()}
         />
-        <div className="flex items-center min-h-screen px-4 py-8">
-          <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-            <div className="mt-3 sm:flex">
-              <div className="mt-2 text-start sm:ml-4 sm:text-left">
-                <span className="mx-3 text-white bg-black px-3 py-1.5 rounded-2xl text-sm font-bold">
-                  {NINE_ITEMS[modal.activeButtonIdx]}
-                </span>
-                {isLoading && <p>Loading...</p>}
-                {isError && <p>Loading failed</p>}
-                {members && (
-                  <MemberGrid members={members} userId={userId} close={close} />
-                )}
-              </div>
-            </div>
+        <div className="absolute bottom-0 flex-col w-full h-fit max-h-[80%] max-w-lg overflow-y-scroll items-center justify-center bg-white rounded-t-[14px] shadow-lg">
+          <div className="w-full flex flex-col items-center justify-center pt-3 pb-4">
+            <div className="w-14 h-1 bg-black bg-opacity-10 rounded-full mb-4" />
+            <span className="text-gray-900 text-[16px] font-bold tracking-[-2%] leading-[130%]">
+              {NINE_ITEMS[modal.activeButtonIdx]}
+            </span>
+          </div>
+          <div className="w-full mb-16 ">
+            {isLoading && <p>Loading...</p>}
+            {isError && <p>Loading failed</p>}
+            {members && (
+              <MemberGrid members={members} userId={userId} close={close} />
+            )}
           </div>
         </div>
       </div>

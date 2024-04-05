@@ -13,7 +13,7 @@ export default function RequestPage() {
         <div className="flex flex-row w-full justify-between items-center">
           <button
             onClick={() => router.push('/')}
-            className="text-xl text-secondaryForeground font-medium"
+            className="text-xl text-black font-medium"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

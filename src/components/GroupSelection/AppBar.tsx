@@ -12,44 +12,50 @@ export default function AppBar() {
   const router = useRouter()
 
   return (
-    <div className="flex flex-col items-start w-full bg-white px-4 pt-3">
-      <div className="flex flex-row w-full justify-between items-center">
-        <button
-          onClick={() => router.push('/')}
-          className="text-xl text-secondaryForeground font-medium"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
+    <div className="flex flex-col items-start w-full bg-white border-b border-gray-100 ">
+      <div className="flex flex-col justify-center w-full bg-white px-3 py-4">
+        <div className="flex flex-row w-full justify-between items-center">
+          <button
+            onClick={() => router.push('/')}
+            className="text-xl text-black font-medium"
           >
-            <path
-              fillRule="evenodd"
-              d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-        <div className="text-center flex-grow text-[14px] font-extrabold text-grey-900">
-          팀 선택
-        </div>
-        <div className="text-xl text-transparent font-medium">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z"
-              clipRule="evenodd"
-            />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5 8.25 12l7.5-7.5"
+              />
+            </svg>
+          </button>
+          <div className="text-center flex-grow text-base font-semibold text-grey-900">
+            팀 선택
+          </div>
+          <div className="text-xl text-transparent font-medium">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5 8.25 12l7.5-7.5"
+              />
+            </svg>
+          </div>
         </div>
       </div>
-      <div className="w-full px-2 pt-6 flex flex-row space-x-3">
+      <div className="w-full pt-6 flex flex-row space-x-3">
         {SELECT_ITEMS.map((item) => {
           return (
             <button
@@ -57,7 +63,7 @@ export default function AppBar() {
                 setSelection(item)
               }}
               key={uuid()}
-              className="flex flex-col items-center font-bold max-w-fit px-1"
+              className="flex flex-col items-center font-bold w-full"
             >
               <div
                 className={

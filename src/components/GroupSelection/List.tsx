@@ -15,7 +15,7 @@ export default function GroupList({ type, gender }: ListProps) {
   const { groups, isLoading, isError } = useGroups(type, gender)
 
   return (
-    <div className="my-5 w-full flex flex-col border-t border-base-200">
+    <div className="my-5 w-full grid grid-cols-4 gap-x-1 gap-y-6 px-5">
       {isLoading && <p>Loading...</p>}
       {isError && <p>Loading failed</p>}
       {groups &&

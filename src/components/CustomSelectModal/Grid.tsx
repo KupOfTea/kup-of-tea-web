@@ -41,7 +41,7 @@ export default function SelectGrid({ handleSelection }: GridProps) {
 
     const tmpMembers = [
       {
-        name: '선택 X',
+        name: '선택 안 함',
         profileImage: '/empty.jpg',
       },
       ...membersData,

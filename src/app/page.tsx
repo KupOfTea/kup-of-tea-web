@@ -16,7 +16,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
   const [isCustomLoading, setIsCustomLoading] = useState(false)
 
-  const delay = async (ms) => {
+  const delay = async (ms: number | undefined) => {
     return new Promise((resolve) => {
       setTimeout(resolve, ms)
     })
@@ -42,7 +42,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col w-full px-5 py-5 h-screen justify-end bg-white">
+    <div className="flex flex-col w-full px-5 py-5 h-screen justify-end items-center bg-white">
       <div className="w-full h-[75%] flex flex-col justify-evenly">
         <div className="flex flex-col items-center">
           <div
@@ -96,7 +96,7 @@ export default function Home() {
           </button>
         </div>
         <div className="flex-grow" />
-        <div className="flex flex-col items-center mb-4">
+        <div className="flex flex-col items-center mb-4 w-full">
           <a
             className="underline text-gray-400 font-medium text-[13px] mb-3"
             href="request"

@@ -6,7 +6,6 @@ import { selectState } from '@/states/select'
 
 import GroupList from './List'
 import AppBar from './AppBar'
-import RequestRouteList from './RequestRouteList'
 
 export default function GroupSelection() {
   const selection = useRecoilValue(selectState)
@@ -14,11 +13,7 @@ export default function GroupSelection() {
   return (
     <div className="flex min-h-screen flex-col items-center bg-white">
       <AppBar />
-      {selection.type === 'request' ? (
-        <RequestRouteList />
-      ) : (
-        <GroupList type={selection.type} gender={selection.gender} />
-      )}
+      <GroupList type={selection.type} gender={selection.gender} />
     </div>
   )
 }

@@ -37,7 +37,7 @@ export default function MemberGrid({ members, userId, close }: Props) {
   useEffect(() => {
     const tmpMembers = [
       {
-        name: '선택 X',
+        name: '선택 안 함',
         profileImage: '/empty.jpg',
       },
       ...members,
@@ -47,16 +47,16 @@ export default function MemberGrid({ members, userId, close }: Props) {
   }, [members])
 
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid grid-cols-3 px-5 gap-x-2 gap-y-7">
       {memberList.map((member) => {
         return (
           <button
             key={uuid()}
             onClick={() => handleSelection(member)}
-            className="flex flex-col items-center p-4 space-y-2 cursor-pointer justify-center"
+            className="flex flex-col items-center space-y-1 cursor-pointer justify-center"
           >
             <SkeletonImage
-              className="object-cover object-center rounded-md aspect-square mb-1"
+              className="object-cover object-center rounded-sm aspect-square mb-1"
               src={
                 member.profileImage === '/empty.jpg'
                   ? member.profileImage
@@ -66,7 +66,7 @@ export default function MemberGrid({ members, userId, close }: Props) {
               width={200}
               height={200}
             />
-            <p className="text-gray-900 text-sm font-semibold">{`${member.name}`}</p>
+            <p className="text-gray-900 text-sm font-semibold tracking-[-2%] leading-[130%]">{`${member.name}`}</p>
           </button>
         )
       })}

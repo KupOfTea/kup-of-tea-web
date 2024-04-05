@@ -21,19 +21,16 @@ export default function GroupCard({ group }: Props) {
   return (
     <button
       onClick={() => handleClick(group)}
-      className="w-full flex flex-row py-4 px-5 cursor-pointer justify-between text-gray-900 text-base font-bold border-b border-base-200"
+      className="w-full flex flex-col cursor-pointer items-center text-gray-900 text-[11px] font-medium"
     >
-      <div className="flex flex-row items-start justify-start space-x-2">
-        <SkeletonImage
-          className="object-contain object-center aspect-square w-6 h-6"
-          src={getImageUrl(group.logo ?? '')}
-          alt=""
-          width={30}
-          height={30}
-        />
-        <div>{group.name}</div>
-      </div>
-      <div>→</div>
+      <SkeletonImage
+        className="object-contain object-center aspect-square w-10 h-10 my-5 tracking-[-6%]"
+        src={getImageUrl(group.logo ?? '')}
+        alt=""
+        width={40}
+        height={40}
+      />
+      <div>{group.name}</div>
     </button>
   )
 }

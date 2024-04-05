@@ -28,15 +28,38 @@ const generateIds = () => {
   return ids
 }
 
+const generateSingleIds = () => {
+  const ids = []
+
+  for (let i = 0; i < 9; i++) {
+    ids.push(`single-${i}`)
+  }
+
+  return ids
+}
+
 export const answerIdsState = atom<string[]>({
   key: 'answerIdsState',
   default: generateIds(),
+})
+
+export const answerSingleIdsState = atom<string[]>({
+  key: 'answerSingleIdsState',
+  default: generateSingleIds(),
 })
 
 export const allAnswersSelector = selector<Answer[]>({
   key: 'allAnswersSelector',
   get: ({ get }) => {
     const ids = get(answerIdsState)
+    return ids.map((id) => get(answerState(id)))
+  },
+})
+
+export const allSingleAnswersSelector = selector<Answer[]>({
+  key: 'allSingleAnswersSelector',
+  get: ({ get }) => {
+    const ids = get(answerSingleIdsState)
     return ids.map((id) => get(answerState(id)))
   },
 })
