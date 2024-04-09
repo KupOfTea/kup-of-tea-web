@@ -42,7 +42,7 @@ export default function SelectButton({ index, userId }: Props) {
   )
 
   const imageClass = classNames(
-    'object-cover object-center aspect-square my-1',
+    'flex object-cover object-center aspect-square my-1',
     type === 'multiple' ? 'w-full rounded-[4px]' : 'w-full rounded-sm ',
   )
 
@@ -66,7 +66,7 @@ export default function SelectButton({ index, userId }: Props) {
       ) : (
         <div
           className={classNames(
-            'aspect-square flex items-center justify-center bg-black bg-opacity-5',
+            'aspect-square flex items-center justify-center bg-black bg-opacity-5 my-1',
             type === 'multiple' ? 'w-full rounded-[4px]' : 'w-full rounded-sm ',
           )}
         >

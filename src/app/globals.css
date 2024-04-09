@@ -13,6 +13,16 @@
 }
 
 @font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src:
+    local('Pretendard Variable'),
+    url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+
+@font-face {
   font-family: 'NPSfontExtraBold';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontExtraBold.woff2')
     format('woff2');

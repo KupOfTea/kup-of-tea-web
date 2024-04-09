@@ -32,7 +32,7 @@ export default function SelectModal({
           className="fixed inset-0 w-full h-full bg-black opacity-40"
           onClick={() => close()}
         />
-        <div className="absolute bottom-0 flex-col w-full h-fit max-h-[80%] max-w-lg overflow-y-scroll items-center justify-center bg-white rounded-t-[14px] shadow-lg -translate-x-2/4 translate-y-0;">
+        <div className="fixed left-0 right-0 mx-auto bottom-0 flex-col w-full h-fit max-h-[80%] max-w-lg overflow-y-scroll bg-white rounded-t-[14px] shadow-lg">
           <div className="w-full flex flex-col items-center justify-center pt-3 pb-4">
             <div className="w-14 h-1 bg-black bg-opacity-10 rounded-full mb-4" />
             <span className="text-gray-900 text-[16px] font-bold tracking-[-2%] leading-[130%]">

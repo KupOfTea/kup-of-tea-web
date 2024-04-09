@@ -35,16 +35,16 @@ export default function StyleCanvas() {
         const userImage = new Image()
         userImage.src = `${user.image}`
 
-        const x = 100
-        const y = 100 + (100 + 30) * userIndex + 45
-        const radius = 45
+        const x = 80
+        const y = 80 + 80 * userIndex + 40
+        const radius = 40
 
         ctx.save()
         // 현재 컨텍스트 설정 저장
 
         // 클리핑 영역을 원으로 설정
         ctx.beginPath()
-        ctx.arc(x, y + 20, radius, 0, Math.PI * 2)
+        ctx.arc(x, y + 35, radius, 0, Math.PI * 2)
         ctx.closePath()
         ctx.clip()
 
@@ -61,7 +61,7 @@ export default function StyleCanvas() {
           sourceSize,
           sourceSize,
           x - radius,
-          y + 20 - radius,
+          y + 35 - radius,
           radius * 2,
           radius * 2,
         )
@@ -71,8 +71,8 @@ export default function StyleCanvas() {
         // 텍스트 그리기
         ctx.fillStyle = 'black'
         ctx.textAlign = 'center'
-        ctx.font = '800 24px SUITE Variable' // Adjust the font size here
-        ctx.fillText(`${user?.username}`, x, y + 95) // Adjust the y position here
+        ctx.font = '500 24px Pretendard Variable' // Adjust the font size here
+        ctx.fillText(`${user?.username}`, x, y + 104) // Adjust the y position here
 
         const userAnswers = answers.filter((answer) =>
           answer.id.includes(`multi-u${userIndex}`),
@@ -82,8 +82,8 @@ export default function StyleCanvas() {
         const answerTextX = x + radius + 160
 
         // 이미지 너비와 높이 설정
-        const imageWidth = 120 // 이미지 너비
-        const imageHeight = 120 // 이미지 높이
+        const imageWidth = 80 // 이미지 너비
+        const imageHeight = 80 // 이미지 높이
 
         // 이미지 간격 설정
         const imageSpacingY = 0 // Y축 간격
@@ -94,7 +94,7 @@ export default function StyleCanvas() {
           const textY = answerTextY
 
           if (userIndex === 0) {
-            ctx.font = '900 36px SUITE Variable'
+            ctx.font = '500 28px Pretendard Variable'
             ctx.fillText(NINE_ITEMS[answerIndex], textX, textY)
           }
 
@@ -150,11 +150,11 @@ export default function StyleCanvas() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 flex flex-col justify-center">
+    <div className="font-pretendard w-full min-h-screen bg-gray-100 flex flex-col justify-center">
       <canvas
         ref={canvasRef}
-        width={1400}
-        height={1000}
+        width={1170}
+        height={900}
         className="w-full bg-white"
       />
       <button
