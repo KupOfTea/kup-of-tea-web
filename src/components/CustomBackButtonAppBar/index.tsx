@@ -41,17 +41,47 @@ export default function CustomBackButtonAppBar({ title }: Props) {
   }
 
   return (
-    <div className="flex flex-row justify-between items-center mb-10 w-full bg-white border-b-[1.2px] border-base-300 h-12 px-4">
-      <button
-        onClick={() => handleBack()}
-        className="text-xl text-secondaryForeground font-medium"
-      >
-        ←
-      </button>
-      <div className="text-center flex-grow text-[14px] font-extrabold text-grey-900">
-        {title}
+    <div className="flex flex-col justify-center w-full bg-white py-4 px-4 border-b border-gray-100">
+      <div className="flex flex-row w-full justify-between items-center">
+        <button
+          onClick={() => handleBack()}
+          className="text-xl text-black font-medium"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
+            />
+          </svg>
+        </button>
+        <div className="text-center flex-grow text-base font-semibold text-grey-900">
+          {title}
+        </div>
+        <div className="text-xl text-transparent font-medium">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
+            />
+          </svg>
+        </div>
       </div>
-      <div className="text-xl text-transparent font-medium">←</div>
     </div>
   )
 }
