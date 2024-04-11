@@ -13,7 +13,7 @@ import CustomGenerateButton from '@/components/CustomGenerateButton'
 
 export default function MultiplePage() {
   return (
-    <div className="flex flex-col w-full h-screen bg-[#FAFAFA]">
+    <div className="flex flex-col w-full min-h-dvh h-full bg-[#FAFAFA]">
       <CustomBackButtonAppBar title="다인용 취향표" />
       <div className="flex flex-col items-center justify-start w-full px-5 py-4 min-h-screen bg-[#FAFAFA]">
         {Array.from({ length: USER_LENGTH }).map((_, userIndex) => {

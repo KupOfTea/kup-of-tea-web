@@ -18,7 +18,7 @@ export default function SinglePage() {
   const completed = !answers.some((e) => e.artistMember === null)
 
   return (
-    <div className="flex flex-col w-full h-screen bg-[#FAFAFA]">
+    <div className="flex flex-col w-full h-dvh bg-[#FAFAFA]">
       <BackButtonAppBar title="개인용 취향표" />
       <SingleCard />
       <div className="bg-white fixed max-w-lg flex left-0 right-0 mx-auto bottom-0 w-full justify-center items-center py-3 px-5">

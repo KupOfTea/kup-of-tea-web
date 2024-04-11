@@ -11,7 +11,7 @@ export default function GroupSelection() {
   const selection = useRecoilValue(selectState)
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-white">
+    <div className="flex min-h-dvh h-full flex-col items-center bg-white">
       <AppBar />
       <GroupList type={selection.type} gender={selection.gender} />
     </div>

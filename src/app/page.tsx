@@ -42,7 +42,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col w-full px-5 py-5 h-screen justify-end items-center bg-white">
+    <div className="flex flex-col w-full px-5 py-5 h-dvh justify-end items-center bg-white">
       <div className="w-full h-[75%] flex flex-col justify-evenly">
         <div className="flex flex-col items-center">
           <div

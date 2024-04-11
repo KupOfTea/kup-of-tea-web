@@ -35,7 +35,7 @@ export default function CustomLandingPage() {
   }
 
   return (
-    <div className="grid w-full h-screen bg-white">
+    <div className="grid w-full h-dvh bg-white">
       <div className="px-3 py-4 flex flex-row w-full justify-between items-center h-fit">
         <button
           onClick={() => router.push('/')}
