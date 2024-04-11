@@ -30,7 +30,7 @@ export default function MultiplePage() {
                 index={userIndex}
               />
               <div className="w-full grid grid-cols-5 mt-5 gap-x-1 gap-y-4 justify-items-center">
-                {NINE_ITEMS.map((_, itemIndex) => (
+                {NINE_ITEMS.map((__, itemIndex) => (
                   <CustomSelectButton
                     index={itemIndex}
                     userId={`u${userIndex}`}
