@@ -1,22 +1,24 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import uuid from 'react-uuid'
 import { useRecoilState } from 'recoil'
 
 import { SELECT_ITEMS } from '@/constants/select'
 import { selectState } from '@/states/select'
 
-export default function AppBar() {
+interface Props {
+  close: () => void
+}
+
+export default function AppBar({ close }: Props) {
   const [selection, setSelection] = useRecoilState(selectState)
-  const router = useRouter()
 
   return (
     <div className="flex flex-col items-start w-full bg-white border-b border-gray-100 ">
       <div className="flex flex-col justify-center w-full bg-white px-3 py-4">
         <div className="flex flex-row w-full justify-between items-center">
           <button
-            onClick={() => router.push('/')}
+            onClick={() => close()}
             className="text-xl text-black font-medium"
           >
             <svg

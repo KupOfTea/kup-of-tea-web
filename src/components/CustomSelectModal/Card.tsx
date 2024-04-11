@@ -1,7 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-
 import { Group } from '@/client/groups'
 import { getImageUrl } from '@/shared/getImageUrl'
 
@@ -13,8 +11,6 @@ interface Props {
 }
 
 export default function GroupCard({ group, handleClick }: Props) {
-  const router = useRouter()
-
   return (
     <button
       onClick={() => handleClick(group)}

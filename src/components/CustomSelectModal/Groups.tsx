@@ -1,13 +1,16 @@
 import { useRecoilValue } from 'recoil'
+import uuid from 'react-uuid'
 
-import { Group } from '@/services/groups'
+import { Group, useGroups } from '@/services/groups'
 import { selectState } from '@/states/select'
+import { getImageUrl } from '@/shared/getImageUrl'
 
 import AppBar from './AppBar'
-import CustomGroupList from './List'
+import SkeletonImage from '../SkeletonImage'
 
 interface Props {
-  groups: Group[]
+  close: () => void
+  handleClick: (group: Group) => Promise<void>
 }
 
 // export default function Groups({ groups, handleClick }: Props) {
@@ -36,13 +39,44 @@ interface Props {
 //   )
 // }
 
-export default function Groups({ groups }: Props) {
+export default function Groups({ close, handleClick }: Props) {
   const selection = useRecoilValue(selectState)
+
+  const { groups, isLoading, isError } = useGroups(
+    selection.type,
+    selection.gender,
+  )
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-white">
-      <AppBar />
-      <CustomGroupList type={selection.type} gender={selection.gender} />
+      <AppBar close={close} />
+      <div className="my-5 w-full grid grid-cols-4 gap-x-1 gap-y-6 px-5">
+        {isLoading && <p>Loading...</p>}
+        {isError && <p>Loading failed</p>}
+        {groups &&
+          groups
+            .sort((a, b) =>
+              a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
+            )
+            .map((group) => {
+              return (
+                <button
+                  key={uuid()}
+                  onClick={() => handleClick(group)}
+                  className="w-full flex flex-col cursor-pointer items-center text-gray-900 text-[11px] font-medium"
+                >
+                  <SkeletonImage
+                    className="object-contain object-center aspect-square w-10 h-10 my-5 tracking-[-6%]"
+                    src={getImageUrl(group.logo ?? '')}
+                    alt=""
+                    width={40}
+                    height={40}
+                  />
+                  <div>{group.name}</div>
+                </button>
+              )
+            })}
+      </div>
     </div>
   )
 }

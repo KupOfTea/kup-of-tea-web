@@ -1,17 +1,12 @@
 'use client'
 
 import { useParams, usePathname, useRouter } from 'next/navigation'
-import { useRecoilValue } from 'recoil'
 import classNames from 'classnames'
-
-import { allAnswersSelector } from '@/states/answer'
 
 export default function GenerateButton() {
   const router = useRouter()
   const { ticker } = useParams()
   const type = usePathname().split('/')[2]
-
-  const answers = useRecoilValue(allAnswersSelector)
 
   return (
     <div className="bg-white fixed max-w-lg flex left-0 right-0 mx-auto bottom-0 w-full justify-center items-center py-3 px-5">
