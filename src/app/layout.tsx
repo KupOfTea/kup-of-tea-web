@@ -77,7 +77,7 @@ export default function RootLayout({
         </Script>
       </head>
 
-      <body className="font-suite flex items-center justify-center min-h-screen bg-gray-100">
+      <body className="font-pretendard tracking-[-2%] flex items-center justify-center min-h-dvh bg-gray-100">
         <Providers>
           <PostHogPageView />
           <div className="max-w-lg w-full">{children}</div>

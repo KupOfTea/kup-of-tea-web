@@ -9,9 +9,4 @@ export const SELECT_ITEMS = [
     gender: 'girl',
     type: 'group',
   },
-  {
-    title: '추가 요청',
-    gender: '',
-    type: 'request',
-  },
 ]

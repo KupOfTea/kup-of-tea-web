@@ -36,7 +36,7 @@ export default function StyleCanvas() {
         userImage.src = `${user.image}`
 
         const x = 100
-        const y = 100 + (100 + 30) * userIndex + 45
+        const y = 100 + (100 + 40) * userIndex + 25
         const radius = 45
 
         ctx.save()
@@ -71,7 +71,7 @@ export default function StyleCanvas() {
         // 텍스트 그리기
         ctx.fillStyle = 'black'
         ctx.textAlign = 'center'
-        ctx.font = '800 24px SUITE Variable' // Adjust the font size here
+        ctx.font = '500 24px Pretendard Variable'
         ctx.fillText(`${user?.username}`, x, y + 95) // Adjust the y position here
 
         const userAnswers = answers.filter((answer) =>
@@ -94,10 +94,9 @@ export default function StyleCanvas() {
           const textY = answerTextY
 
           if (userIndex === 0) {
-            ctx.font = '900 36px SUITE Variable'
-            ctx.fillText(NINE_ITEMS[answerIndex], textX, textY)
+            ctx.font = '500 30px Pretendard Variable'
+            ctx.fillText(NINE_ITEMS[answerIndex], textX, textY - 10)
           }
-
           const imageX = textX - 60
           const imageY = answerTextY + imageSpacingY + 20
 
@@ -119,15 +118,6 @@ export default function StyleCanvas() {
     }
 
     drawStyle()
-
-    ctx.fillStyle = 'black'
-    ctx.textAlign = 'right'
-    ctx.font = '400 22px sans-serif'
-    ctx.fillText(
-      `@DevvTyga 개발자 타이가 - ${ticker || 'K-POP'} 취향표`,
-      canvas.width - 10,
-      canvas.height - 10,
-    )
   }, [canvasRef, users, answers])
 
   const saveAsImage = () => {
@@ -150,19 +140,21 @@ export default function StyleCanvas() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 flex flex-col justify-center">
+    <div className="w-full min-h-screen bg-[#FAFAFA] flex flex-col justify-center">
       <canvas
         ref={canvasRef}
         width={1400}
         height={1000}
         className="w-full bg-white"
       />
-      <button
-        onClick={saveAsImage}
-        className={`fixed max-w-md rounded-[28px] left-1/2 -translate-x-1/2 text-center items-center justify-center py-[16px] bg-gray-900 text-white font-bold text-[13px] w-[85%] bottom-[35px] ${'block'}`}
-      >
-        저장하기
-      </button>
+      <div className="bg-white fixed max-w-lg flex left-0 right-0 mx-auto bottom-0 w-full justify-center items-center py-3 px-5">
+        <button
+          onClick={saveAsImage}
+          className="w-full py-4 bg-black text-white font-semibold text-center text-[16px] rounded-[8px] tracking-[-2%] leading-[130%]"
+        >
+          저장하기
+        </button>
+      </div>
     </div>
   )
 }

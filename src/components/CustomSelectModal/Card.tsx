@@ -1,7 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-
 import { Group } from '@/client/groups'
 import { getImageUrl } from '@/shared/getImageUrl'
 
@@ -9,15 +7,10 @@ import SkeletonImage from '../SkeletonImage'
 
 interface Props {
   group: Group
+  handleClick: (group: Group) => Promise<void>
 }
 
-export default function GroupCard({ group }: Props) {
-  const router = useRouter()
-
-  const handleClick = (item: Group) => {
-    router.push(`/${item.ticker}`)
-  }
-
+export default function GroupCard({ group, handleClick }: Props) {
   return (
     <button
       onClick={() => handleClick(group)}

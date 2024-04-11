@@ -37,49 +37,70 @@ export default function CustomSelectButton({ index, userId }: Props) {
   }
 
   const titleClass = classNames(
-    'font-extrabold text-black',
-    type === 'single' ? 'text-sm' : 'text-[10px]',
+    'text-black text-opacity-80 w-full text-center font-semibold tracking-[-2%] mt-1',
+    type === 'multiple' ? 'text-[12px]' : 'text-[14px]',
   )
 
   const imageClass = classNames(
-    'object-cover object-center rounded-sm aspect-square',
-    type === 'multiple' ? 'w-10' : '',
+    'flex object-cover object-center aspect-square my-1',
+    type === 'multiple' ? 'w-full rounded-[4px]' : 'w-full rounded-sm ',
   )
 
   return (
     <button
       onClick={() => openModal()}
-      className="mx-1 mb-3 flex flex-col items-center space-y-2 cursor-pointer text-gray-600 hover:border-black hover:text-black justify-center"
+      className="w-full flex flex-col items-center text-center cursor-pointer"
     >
-      <span className={titleClass}>{NINE_ITEMS[index]}</span>
       {answer?.artistMember?.profileImage && answer?.artistMember?.name ? (
         <img
           className={imageClass}
           src={
             answer?.artistMember?.profileImage === '/empty.jpg'
               ? answer?.artistMember?.profileImage
-              : getImageUrl(answer?.artistMember?.profileImage)
+              : getImageUrl(answer?.artistMember?.profileImage ?? '')
           }
-          alt=""
-          width={300}
-          height={300}
+          alt={answer?.artistMember?.name ?? ''}
+          width={100}
+          height={100}
         />
       ) : (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="w-5 h-5"
+        <div
+          className={classNames(
+            'aspect-square flex items-center justify-center bg-black bg-opacity-5 my-1',
+            type === 'multiple' ? 'w-full rounded-[4px]' : 'w-full rounded-sm ',
+          )}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={type === 'multiple' ? '16' : '25'}
+            height={type === 'multiple' ? '16' : '25'}
+            viewBox="0 0 25 25"
+            fill="none"
+          >
+            <g clipPath="url(#clip0_1_194)">
+              <circle opacity="0.4" cx="12.5" cy="12.5" r="12" fill="white" />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M24.5 12.5C24.5 19.1274 19.1274 24.5 12.5 24.5C5.87259 24.5 0.5 19.1274 0.5 12.5C0.5 5.87259 5.87259 0.5 12.5 0.5C19.1274 0.5 24.5 5.87259 24.5 12.5ZM12.5 6.07143C13.2101 6.07143 13.7857 6.64707 13.7857 7.35714V11.2143H17.6429C18.3529 11.2143 18.9286 11.7899 18.9286 12.5C18.9286 13.2101 18.3529 13.7857 17.6429 13.7857H13.7857V17.6429C13.7857 18.3529 13.2101 18.9286 12.5 18.9286C11.7899 18.9286 11.2143 18.3529 11.2143 17.6429V13.7857H7.35714C6.64707 13.7857 6.07143 13.2101 6.07143 12.5C6.07143 11.7899 6.64707 11.2143 7.35714 11.2143H11.2143V7.35714C11.2143 6.64707 11.7899 6.07143 12.5 6.07143Z"
+                fill="black"
+                fillOpacity="0.15"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_1_194">
+                <rect
+                  width="24"
+                  height="24"
+                  fill="white"
+                  transform="translate(0.5 0.5)"
+                />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
       )}
+      <span className={titleClass}>{NINE_ITEMS[index]}</span>
     </button>
   )
 }

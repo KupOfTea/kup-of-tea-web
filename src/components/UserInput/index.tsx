@@ -35,57 +35,52 @@ export default function UserInput({ index }: Props) {
   }
 
   return (
-    <div className="flex flex-col min-w-min items-center space-y-4">
-      <div className="flex flex-col text-[8px] pr-2">
-        <label className="flex flex-col items-center w-36 bg-[#EEEEEE]  text-[#818181] rounded-full aspect-square border-[1px] border-[#DBDBDB]">
-          {user?.image ? (
-            <label>
-              <img
-                src={user?.image}
-                alt=""
-                className="rounded-full aspect-square object-cover"
-              />
-              <input
-                onChange={handleImageChange}
-                className="hidden"
-                type="file"
-                accept="image/*"
-              />
-            </label>
-          ) : (
-            <div>
-              <div className="flex flex-col justify-center items-center py-[45px]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6 mb-[10px]"
-                >
-                  <path d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M9.344 3.071a49.52 49.52 0 015.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 01-3 3h-15a3 3 0 01-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 001.11-.71l.822-1.315a2.942 2.942 0 012.332-1.39zM6.75 12.75a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0zm12-1.5a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <div className="text-[12px] font-medium">이미지 업로드</div>
-              </div>
-              <input
-                onChange={handleImageChange}
-                className="hidden"
-                type="file"
-                accept="image/*"
-              />
+    <div className="flex flex-row items-center justify-center">
+      <label className="flex items-center w-11 rounded-full aspect-square bg-black bg-opacity-5 border-black border-opacity-10">
+        {user?.image ? (
+          <label>
+            <img
+              src={user?.image}
+              alt=""
+              className="rounded-full aspect-square object-cover"
+            />
+            <input
+              onChange={handleImageChange}
+              className="hidden"
+              type="file"
+              accept="image/*"
+            />
+          </label>
+        ) : (
+          <div>
+            <div className="flex flex-col justify-center items-center rounded-full aspect-square object-cover w-11 h-11 bg-black bg-opacity-5 border-black border-opacity-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="#0000004D"
+                className="w-6 h-6"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <circle cx="12" cy="12" r="3.2" />
+                <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+              </svg>
             </div>
-          )}
-        </label>
-      </div>
+            <input
+              onChange={handleImageChange}
+              className="hidden"
+              type="file"
+              accept="image/*"
+            />
+          </div>
+        )}
+      </label>
+      <div className="w-3" />
       <input
         type="text"
-        className="apprearance-none w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-black focus:border-black"
+        className="my-1 bg-white apprearance-none w-full border border-black border-opacity-10 rounded-sm px-[14px] py-[10px] tracking-[-2%] leading-[130%] text-base text-black text-opacity-80 font-semibold placeholder:text-base placeholder:font-normal placeholder-black placeholder-opacity-30 focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10"
         value={user?.username ?? ''}
         onChange={(e) => updateUsername(e.target.value)}
-        placeholder={`${index + 1} 번째 이름`}
+        placeholder="이름"
       />
     </div>
   )

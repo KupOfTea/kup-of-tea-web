@@ -1,42 +1,96 @@
+import { useParams, useRouter } from 'next/navigation'
+import { useState } from 'react'
 import classNames from 'classnames'
 
 import { Group } from '@/client/groups'
 import { getImageUrl } from '@/shared/getImageUrl'
-
-import NavigationButton from '@/components/NavigationButton'
 
 interface Props {
   group: Group
 }
 
 const GroupPage = ({ group }: Props) => {
+  const router = useRouter()
+  const [isSingleLoading, setIsSingleLoading] = useState(false)
+  const [isMultipleLoading, setIsMultipleLoading] = useState(false)
+  const { ticker } = useParams()
+
+  const delay = async (ms: number | undefined) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms)
+    })
+  }
+
+  const toRoute = async (route: string) => {
+    if (isSingleLoading || isMultipleLoading) {
+      return
+    }
+    if (route.includes('multiple')) {
+      setIsMultipleLoading(true)
+    } else {
+      setIsSingleLoading(true)
+    }
+    await delay(500)
+    await delay(500)
+    if (route.includes('multiple')) {
+      setIsMultipleLoading(false)
+    } else {
+      setIsSingleLoading(false)
+    }
+    router.push(route)
+  }
+
   return (
-    <>
-      <div
-        className={classNames(
-          'mb-20 text-3xl font-black text-black flex flex-col text-center',
-          '.service-title',
-        )}
-      >
-        <div>{group?.name || ''}</div>
-        <div>취향표</div>
-      </div>
+    <div className="flex flex-col w-full items-center h-full">
       {group?.logo ? (
         <img
-          className="object-contain w-[50%] aspect-square mb-10"
+          className="object-contain aspect-square w-40 mb-5"
           src={getImageUrl(group?.logo)}
           alt=""
-          width={1000}
-          height={1000}
+          width={160}
+          height={160}
         />
       ) : (
-        <div className="object-cover w-[50%] aspect-square mb-10" />
+        <div className="object-cover aspect-square w-40 mb-5" />
       )}
-      <div className="mb-10 flex flex-col w-full space-y-5 items-center justify-center">
-        <NavigationButton path="single" title="1인용 취향표" border />
-        <NavigationButton path="multiple" title="6인용 취향표" border={false} />
+      <div className="font-bold text-[24px] mb-16">{group?.name}</div>
+      <div className="flex flex-col w-full">
+        <button
+          onClick={() => toRoute(`${ticker}/single`)}
+          className={classNames(
+            'transition-all duration-100 flex flex-col w-full items-start justify-start px-7 pt-6 h-[112px] border border-gray-300 rounded-md mb-2',
+            isSingleLoading ? 'bg-gray-200' : 'bg-gray-50',
+          )}
+        >
+          <div className="font-semibold text-[18px] text-gray-800">
+            개인용 취향표 생성하기
+          </div>
+          <div className="text-start font-medium text-[12px] text-gray-400 mb-2">
+            혼자만의 취향표를 만들어 공유해요.
+          </div>
+        </button>
+        <button
+          onClick={() => toRoute(`${ticker}/multiple`)}
+          className={classNames(
+            'transition-all duration-100 flex flex-col w-full items-start justify-start px-7 pt-6 h-[112px] border border-gray-300 rounded-md mb-2',
+            isMultipleLoading ? 'bg-gray-200' : 'bg-gray-50',
+          )}
+        >
+          <div className="font-semibold text-[18px] text-gray-800">
+            다인용 취향표 생성하기
+          </div>
+          <div className="text-start font-medium text-[12px] text-gray-400 mb-4">
+            여러 사람이 함께 취향표를 만들어 공유해요.
+          </div>
+        </button>
+        <button
+          className="underline text-gray-400 font-normal text-[13px] mb-3"
+          onClick={() => router.push('/select')}
+        >
+          팀 다시 선택하기
+        </button>
       </div>
-    </>
+    </div>
   )
 }
 

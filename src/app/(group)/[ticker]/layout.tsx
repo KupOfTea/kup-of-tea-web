@@ -58,8 +58,6 @@ export async function generateMetadata({
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col items-center bg-white">
-      {children}
-    </div>
+    <div className="flex h-full flex-col items-center bg-white">{children}</div>
   )
 }
