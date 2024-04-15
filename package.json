@@ -32,6 +32,7 @@
     "radash": "^12.0.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.3",
     "react-uuid": "^2.0.0",
     "recoil": "^0.7.7",
     "swiper": "^11.0.6",
