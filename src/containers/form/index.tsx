@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import uuid from 'react-uuid'
+import { Icon } from '@iconify/react'
 
 import { RequestTeamForm } from '@/types/requestForm'
 
-import FormSelection from '@/components/FormSelection'
+import QuestionTemplate from '@/components/QuestionTemplate'
+import SelectBox from '@/components/SelectBox'
 
 export default function RequestForm() {
   const { register, control, handleSubmit, watch, getValues, setValue } =
@@ -30,19 +32,19 @@ export default function RequestForm() {
   })
 
   const types = [
-    { value: 'multiple', label: '그룹입니다.' },
-    { value: 'single', label: '솔로 가수입니다.' },
+    { value: 'multiple', label: '그룹' },
+    { value: 'single', label: '솔로 아티스트' },
   ]
 
   const genders = [
-    { value: 'boy', label: '보이그룹입니다.' },
-    { value: 'girl', label: '걸그룹입니다.' },
-    { value: 'coed', label: '혼성 그룹입니다.' },
+    { value: 'girl', label: '여성' },
+    { value: 'boy', label: '남성' },
+    { value: 'coed', label: '혼성' },
   ]
 
   const gendersForSingle = [
-    { value: 'boy', label: '남자 솔로 가수입니다.' },
-    { value: 'girl', label: '여자 솔로 가수입니다.' },
+    { value: 'girl', label: '여성' },
+    { value: 'boy', label: '남성' },
   ]
 
   const registerSubmit = (data: RequestTeamForm) => {
@@ -87,93 +89,166 @@ export default function RequestForm() {
       : '해당 팀에 속한 멤버들의 프로필을 작성해 주세요.'
 
   const imageClass =
-    'flex object-cover object-center aspect-square my-1 w-full rounded-[4px]'
+    'flex object-cover object-center aspect-square w-24 h-24 rounded-sm'
 
   return (
-    <div className="w-full flex flex-col h-dvh py-4 bg-[#FAFAFA]">
+    <div className="w-full flex flex-col min-h-dvh h-full py-6 px-5 bg-white">
       <form
-        className="w-full flex flex-col h-full pt-1 pb-20"
+        className="w-full flex flex-col h-full pt-1 pb-20 space-y-8"
         onSubmit={handleSubmit(registerSubmit)}
       >
-        <div className="w-full px-5">
-          <div className="flex flex-row items-center justify-center my-4">
-            <label className="flex items-center w-11 rounded-full aspect-square bg-black bg-opacity-5 border-black border-opacity-10">
-              {logoPreview !== '' ? (
-                <label>
-                  <img
-                    src={logoPreview}
-                    alt=""
-                    className="rounded-full aspect-square object-cover"
-                  />
-                  <input
-                    {...register('logo')}
-                    placeholder=" K-POP 그룹(또는 솔로 아티스트) 로고 이미지 *"
-                    id="picture"
-                    type="file"
-                    className="hidden"
-                    accept="image/*"
-                  />
-                </label>
-              ) : (
-                <div>
-                  <div className="flex flex-col justify-center items-center rounded-full aspect-square object-cover w-11 h-11 bg-black bg-opacity-5 border-black border-opacity-10">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="#0000004D"
-                      className="w-6 h-6"
-                    >
-                      <path d="M0 0h24v24H0z" fill="none" />
-                      <circle cx="12" cy="12" r="3.2" />
-                      <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
-                    </svg>
-                  </div>
-                  <input
-                    {...register('logo')}
-                    placeholder=" K-POP 그룹(또는 솔로 아티스트) 로고 이미지 *"
-                    id="picture"
-                    type="file"
-                    className="hidden"
-                    accept="image/*"
-                  />
-                </div>
-              )}
-            </label>
-            <div className="w-3" />
-            <input
-              {...register('name')}
-              placeholder="K-POP 그룹(또는 솔로 아티스트) 이름 *"
-              className="bg-white apprearance-none w-full border border-black border-opacity-10 rounded-sm px-[14px] py-[10px] tracking-[-2%] leading-[130%] text-base text-black text-opacity-80 font-semibold placeholder:text-base placeholder:font-normal placeholder-black placeholder-opacity-30 focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10"
-              type="text"
-            />
-          </div>
+        <QuestionTemplate title="활동 카테고리">
+          <SelectBox
+            currentValue={currentType}
+            keyName="type"
+            allOptions={types}
+            setCurrentValue={setCurrentType}
+            setFormValue={setValue}
+          />
+        </QuestionTemplate>
+
+        <QuestionTemplate title="아티스트 및 그룹 성별">
+          <SelectBox
+            keyName="gender"
+            allOptions={currentGenderOptions}
+            currentValue={currentGender}
+            setCurrentValue={setCurrentGender}
+            setFormValue={setValue}
+          />
+        </QuestionTemplate>
+
+        <QuestionTemplate
+          title="국문 이름"
+          subTitle="아티스트 및 그룹의 국문 이름을 입력해 주세요"
+        >
+          <input
+            {...register('name')}
+            placeholder="한글 이름 ex. 방탄소년단"
+            type="text"
+            className="bg-white apprearance-none w-full border rounded-sm border border-black border-opacity-5  px-3.5 py-[11px] tracking-[-2%] leading-[130%] text-sm text-black text-opacity-80 font-semibold
+            placeholder:text-black placeholder:text-opacity-30 placeholder:text-sm placeholder:font-medium placeholder:leading-[18.20px] focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10"
+          />
+        </QuestionTemplate>
+
+        <QuestionTemplate
+          title="영문 이름"
+          subTitle="아티스트 및 그룹의 영문 이름 또는 약자를 입력해 주세요 "
+        >
           <input
             {...register('ticker')}
-            className="my-4 bg-white apprearance-none w-full border border-black border-opacity-10 rounded-sm px-[14px] py-[10px] tracking-[-2%] leading-[130%] text-base text-black text-opacity-80 font-semibold placeholder:text-base placeholder:font-normal placeholder-black placeholder-opacity-30 focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10"
-            placeholder="K-POP 그룹(또는 솔로 아티스트) 영어 이름 or 약자 *"
+            placeholder="영문 이름 ex. BTS"
             type="text"
+            className="bg-white apprearance-none w-full border rounded-sm border border-black border-opacity-5  px-3.5 py-[11px] tracking-[-2%] leading-[130%] text-sm text-black text-opacity-80 font-semibold
+            placeholder:text-black placeholder:text-opacity-30 placeholder:text-sm placeholder:font-medium placeholder:leading-[18.20px] focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10"
           />
-        </div>
-        <FormSelection
-          keyName="type"
-          allOptions={types}
-          currentValue={currentType}
-          setCurrentValue={setCurrentType}
-          setFormValue={setValue}
-        />
-        <FormSelection
-          keyName="gender"
-          allOptions={currentGenderOptions}
-          currentValue={currentGender}
-          setCurrentValue={setCurrentGender}
-          setFormValue={setValue}
-        />
-        <div className="flex flex-col w-full px-5 items-center">
-          <p className="font-semibold text-sm">{memberTitle}</p>
+        </QuestionTemplate>
 
-          <div className="w-full grid grid-cols-3 mt-5 gap-x-1 gap-y-4 justify-items-center">
+        <QuestionTemplate
+          title="로고"
+          subTitle="아티스트 및 그룹의 로고 이미지를 업로드 해 주세요"
+        >
+          <label className="relative flex items-center w-44 h-44 rounded-md aspect-square bg-black bg-opacity-[3%] border-2 border-black border-opacity-5">
+            {logoPreview !== '' ? (
+              <label className="w-full h-full bg-white rounded-md">
+                <div className="absolute right-1.5 top-1.5 z-20 w-[24.64px] h-[24.64px] p-[6.16px] bg-neutral-400 rounded-full justify-center items-center text-white">
+                  <Icon
+                    icon="streamline:pen-tool-solid"
+                    width="12"
+                    height="12"
+                  />
+                </div>
+                <img
+                  src={logoPreview}
+                  alt=""
+                  className="rounded-md aspect-square object-cover"
+                />
+                <input
+                  {...register('logo')}
+                  placeholder=" K-POP 그룹(또는 솔로 아티스트) 로고 이미지 *"
+                  id="picture"
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                />
+              </label>
+            ) : (
+              <div>
+                <div className="flex flex-col text-black text-opacity-30 justify-center items-center aspect-square object-cover w-44 h-44 ">
+                  <Icon
+                    icon="streamline:pictures-folder-memories-solid"
+                    width="32"
+                    height="32"
+                  />
+                </div>
+                <input
+                  {...register('logo')}
+                  placeholder=" K-POP 그룹(또는 솔로 아티스트) 로고 이미지 *"
+                  id="picture"
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                />
+              </div>
+            )}
+          </label>
+        </QuestionTemplate>
+        <QuestionTemplate
+          title="아티스트"
+          subTitle="아티스트(멤버)의 공식 프로필 기준 예명과 사진을 추가해 주세요"
+        >
+          <div className="w-full flex flex-col space-y-2">
             {fields.map((field, index) => (
-              <label className="flex flex-col w-full items-center" key={uuid()}>
+              <label
+                className="relative flex flex-col w-full items-start p-3 bg-black bg-opacity-[3%] rounded-[10px]"
+                key={uuid()}
+              >
+                {currentType.value === 'multiple' && index !== 0 && (
+                  <div className="absolute right-3 top-3">
+                    <button
+                      className="z-100"
+                      type="button"
+                      onClick={() => {
+                        if (index === 0) {
+                          alert('한 명 이상의 멤버를 작성해야 합니다.')
+                        } else {
+                          remove(index)
+                        }
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <g clipPath="url(#clip0_189_3423)">
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M8 15.9961C12.4183 15.9961 16 12.4144 16 7.99609C16 3.57782 12.4183 -0.00390625 8 -0.00390625C3.58173 -0.00390625 0 3.57782 0 7.99609C0 12.4144 3.58173 15.9961 8 15.9961ZM4.57143 7.13895C4.09805 7.13895 3.71429 7.52271 3.71429 7.99609C3.71429 8.46948 4.09805 8.85324 4.57143 8.85324H11.4286C11.9019 8.85324 12.2857 8.46948 12.2857 7.99609C12.2857 7.52271 11.9019 7.13895 11.4286 7.13895H4.57143Z"
+                            fill="black"
+                            fillOpacity="0.85"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_189_3423">
+                            <rect
+                              width="16"
+                              height="16"
+                              fill="white"
+                              transform="translate(0 -0.00390625)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </button>
+                  </div>
+                )}
+
+                <span className="text-black text-opacity-80 text-xs font-bold leading-none mb-3">{`${
+                  index + 1
+                }번 아티스트`}</span>
                 {watch(`members.${index}.image`) &&
                 watch(`members.${index}.image`).length > 0 ? (
                   <label>
@@ -196,41 +271,14 @@ export default function RequestForm() {
                     />
                   </label>
                 ) : (
-                  <div className="w-full rounded-[4px] aspect-square flex items-center justify-center bg-black bg-opacity-5 my-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 25 25"
-                      fill="none"
-                    >
-                      <g clipPath="url(#clip0_1_194)">
-                        <circle
-                          opacity="0.4"
-                          cx="12.5"
-                          cy="12.5"
-                          r="12"
-                          fill="white"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M24.5 12.5C24.5 19.1274 19.1274 24.5 12.5 24.5C5.87259 24.5 0.5 19.1274 0.5 12.5C0.5 5.87259 5.87259 0.5 12.5 0.5C19.1274 0.5 24.5 5.87259 24.5 12.5ZM12.5 6.07143C13.2101 6.07143 13.7857 6.64707 13.7857 7.35714V11.2143H17.6429C18.3529 11.2143 18.9286 11.7899 18.9286 12.5C18.9286 13.2101 18.3529 13.7857 17.6429 13.7857H13.7857V17.6429C13.7857 18.3529 13.2101 18.9286 12.5 18.9286C11.7899 18.9286 11.2143 18.3529 11.2143 17.6429V13.7857H7.35714C6.64707 13.7857 6.07143 13.2101 6.07143 12.5C6.07143 11.7899 6.64707 11.2143 7.35714 11.2143H11.2143V7.35714C11.2143 6.64707 11.7899 6.07143 12.5 6.07143Z"
-                          fill="black"
-                          fillOpacity="0.15"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_1_194">
-                          <rect
-                            width="24"
-                            height="24"
-                            fill="white"
-                            transform="translate(0.5 0.5)"
-                          />
-                        </clipPath>
-                      </defs>
-                    </svg>
+                  <div className="flex object-center aspect-square w-24 h-24 rounded-sm flex items-center justify-center  bg-black bg-opacity-[3%]">
+                    <div className="flex flex-col text-black text-opacity-30 justify-center items-center aspect-square object-cover w-44 h-44 ">
+                      <Icon
+                        icon="streamline:pictures-folder-memories-solid"
+                        width="21"
+                        height="21"
+                      />
+                    </div>
                     <input
                       {...register(`members.${index}.image`)}
                       placeholder="멤버 프로필 이미지 *"
@@ -243,51 +291,37 @@ export default function RequestForm() {
                 )}
                 <input
                   {...register(`members.${index}.name`)}
-                  placeholder="멤버 이름"
+                  placeholder="공식 이름 및 예명 ex. 에스쿱스"
                   defaultValue={field.name}
                   type="text"
-                  className="bg-white mt-1 mb-6 apprearance-none w-full border border-black border-opacity-10 rounded-[4px] px-[6px] py-[4px] tracking-[-2%] leading-[130%] text-[10px] text-black text-opacity-80 font-normal placeholder:text-[10px] placeholder:font-light placeholder-black placeholder-opacity-30 focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10"
+                  className="bg-white mt-3 apprearance-none w-full border border-black border-opacity-5 rounded-sm px-[14px] py-[11px] text-[10px] text-black text-opacity-80 text-[13px] leading-[16.90px] font-semibold placeholder:text-[13px] placeholder:font-medium placeholder-black placeholder-opacity-30 placeholder:leading-[16.90px] focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10"
                 />
-                {currentType.value === 'multiple' && (
-                  <button
-                    className="bg-black bg-opacity-10 rounded-sm px-1 py-0.5 text-[10px] border border-gray-500 text-gray-700 font-semibold"
-                    type="button"
-                    onClick={() => {
-                      if (index === 0) {
-                        alert('한 명 이상의 멤버를 작성해야 합니다.')
-                      } else {
-                        remove(index)
-                      }
-                    }}
-                  >
-                    Remove
-                  </button>
-                )}
               </label>
             ))}
           </div>
-          {currentType.value === 'multiple' && (
-            <button
-              className="mb-5 mt-3 flex flex-col w-full items-center justify-start px-4 py-3 border border-gray-300 rounded-md mb-2"
-              type="button"
-              onClick={() => {
-                if (currentType.value === 'multiple') {
-                  append({
-                    name: '',
-                    image: '',
-                  })
-                }
-                if (currentType.value === 'single') {
-                  alert(
-                    '솔로 가수는 멤버를 추가할 수 없습니다.\n솔로 가수의 이름과 프로필 사진을 작성해 주세요.',
-                  )
-                }
-              }}
-            >
-              멤버 추가
-            </button>
-          )}
-        </div>
+        </QuestionTemplate>
+        {currentType.value === 'multiple' && (
+          <button
+            className="flex flex-row w-full py-3 border border-black border-opacity-5 justify-center items-center gap-1 inline-flex rounded-sm text-black text-opacity-90 text-[13px] font-semibold leading-[16.90px]"
+            type="button"
+            onClick={() => {
+              if (currentType.value === 'multiple') {
+                append({
+                  name: '',
+                  image: '',
+                })
+              }
+              if (currentType.value === 'single') {
+                alert(
+                  '솔로 가수는 멤버를 추가할 수 없습니다.\n솔로 가수의 이름과 프로필 사진을 작성해 주세요.',
+                )
+              }
+            }}
+          >
+            <span>아티스트 추가</span>
+            <Icon icon="fluent:add-12-regular" width="14" height="14" />
+          </button>
+        )}
 
         <div className="bg-white fixed max-w-lg flex left-0 right-0 mx-auto bottom-0 w-full justify-center items-center py-3 px-5">
           <button

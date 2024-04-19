@@ -1,8 +1,7 @@
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Dispatch, Fragment, SetStateAction } from 'react'
 import { UseFormSetValue } from 'react-hook-form'
-import uuid from 'react-uuid'
+import { Icon } from '@iconify/react'
 
 import { RequestTeamForm } from '@/types/requestForm'
 
@@ -39,14 +38,14 @@ export default function FormSelection({
         }}
       >
         <div className="my-4 mx-5 max-w-md">
-          <Listbox.Button className="flex flex-row justify-between bg-white w-full max-w-md border border-black border-opacity-10 rounded-sm px-[14px] py-[10px] tracking-[-2%] leading-[130%] text-base text-black text-opacity-80 font-semibold placeholder:text-base placeholder:font-normal placeholder-black placeholder-opacity-30 focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10">
+          <Listbox.Button className="flex flex-row justify-between items-center bg-white w-full max-w-md border border-black border-opacity-10 rounded-sm px-[14px] py-[10px] tracking-[-2%] leading-[130%] text-base text-black text-opacity-80 font-semibold placeholder:text-base placeholder:font-normal placeholder-black placeholder-opacity-30 focus:outline-none focus:ring-black focus:border-black focus:border-opacity-10">
             <span className="truncate pl-1">{currentValue.label}</span>
-            <span className="pointer-events-none flex items-center">
-              <ChevronUpDownIcon
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-            </span>
+            <Icon
+              className="pointer-events-none rotate-90"
+              icon="streamline:button-play-solid"
+              width="10"
+              height="10"
+            />
           </Listbox.Button>
           <Transition
             as={Fragment}
@@ -54,7 +53,8 @@ export default function FormSelection({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute max-w-sm m-auto py-4 left-0 right-0 z-10 mt-3 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <div>casdfasdf</div>
+            {/* <Listbox.Options className="absolute max-w-sm m-auto py-4 left-0 right-0 z-10 mt-3 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {allOptions.map((type) => (
                 <Listbox.Option
                   key={uuid()}
@@ -83,7 +83,7 @@ export default function FormSelection({
                   )}
                 </Listbox.Option>
               ))}
-            </Listbox.Options>
+            </Listbox.Options> */}
           </Transition>
         </div>
       </Listbox>
