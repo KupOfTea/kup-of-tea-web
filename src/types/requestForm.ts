@@ -1,4 +1,4 @@
-interface RequestMemberForm {
+export interface RequestMemberForm {
   name: string
   image: string
 }

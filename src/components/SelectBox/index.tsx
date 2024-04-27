@@ -35,7 +35,7 @@ export default function SelectBox({
         isOpen={isOpen}
         close={close}
         options={allOptions ?? []}
-        keyName="type"
+        keyName={keyName}
         currentValue={currentValue}
         setCurrentValue={setCurrentValue}
         setFormValue={setFormValue}
@@ -45,6 +45,7 @@ export default function SelectBox({
 
   return (
     <button
+      type="button"
       onClick={() => openModal()}
       className="w-full h-10 px-3.5 py-[11px] bg-white rounded-sm border border-black border-opacity-5 justify-between items-center inline-flex"
     >
