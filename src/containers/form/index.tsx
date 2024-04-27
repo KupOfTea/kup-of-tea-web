@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import ky from 'ky'
 import { useFieldArray, useForm } from 'react-hook-form'
-import uuid from 'react-uuid'
+import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
-import ky from 'ky-universal'
+import uuid from 'react-uuid'
 
 import { RequestMemberForm, RequestTeamForm } from '@/types/requestForm'
 
@@ -10,7 +10,7 @@ import QuestionTemplate from '@/components/QuestionTemplate'
 import SelectBox from '@/components/SelectBox'
 
 export default function RequestForm() {
-  const { register, control, handleSubmit, watch, getValues, setValue } =
+  const { register, control, handleSubmit, watch, setValue } =
     useForm<RequestTeamForm>({
       defaultValues: {
         name: '',
