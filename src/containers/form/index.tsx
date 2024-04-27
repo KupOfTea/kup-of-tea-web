@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import uuid from 'react-uuid'
 import { Icon } from '@iconify/react'
@@ -125,8 +125,7 @@ export default function RequestForm() {
     }
   }
 
-  const registerSubmit = (data: RequestTeamForm, e: FormEvent) => {
-    e.preventDefault()
+  const registerSubmit = (data: RequestTeamForm) => {
     const isDataValid = checkData(data)
     if (isDataValid) {
       uploadData(data)
@@ -183,7 +182,7 @@ export default function RequestForm() {
     <div className="w-full flex flex-col min-h-dvh h-full py-6 px-5 bg-white">
       <form
         className="w-full flex flex-col h-full pt-1 pb-20 space-y-8"
-        onSubmit={(e) => handleSubmit((data) => registerSubmit(data, e))}
+        onSubmit={handleSubmit(registerSubmit)}
       >
         <QuestionTemplate title="활동 카테고리">
           <SelectBox
