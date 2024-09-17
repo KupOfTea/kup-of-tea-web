@@ -8,7 +8,7 @@ interface IMenu {
 export default function RequestRouteList() {
   const menus: IMenu[] = [
     {
-      route: 'https://forms.gle/xkrDGoCzuMKsBa6d6',
+      route: '/request/form',
       title: '팀 추가요청',
     },
     {
