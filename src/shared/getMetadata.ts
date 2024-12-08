@@ -37,7 +37,6 @@ export const getMetadata = ({
       ],
     },
     twitter: {
-      creator: '@DevvTyga',
       card: 'summary_large_image',
       site: url,
       title,

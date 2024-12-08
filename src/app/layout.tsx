@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    creator: '@DevvTyga',
     card: 'summary_large_image',
     title: 'K-POP 아이돌 취향표 생성기',
     description: 'K-POP 아이돌 취향표 생성기',

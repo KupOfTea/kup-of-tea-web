@@ -103,12 +103,6 @@ export default function Home() {
           >
             추가요청이 있다면 알려주세요!
           </a>
-          <a
-            href="https://twitter.com/DevvTyga"
-            className="text-medium text-xs text-gray-300"
-          >
-            @DevvTyga
-          </a>
         </div>
       </div>
     </div>

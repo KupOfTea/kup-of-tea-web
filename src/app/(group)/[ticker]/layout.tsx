@@ -39,7 +39,6 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      creator: '@DevvTyga',
       card: 'summary_large_image',
       title,
       description: title,
